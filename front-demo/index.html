@@ -47,6 +47,14 @@
         <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
       </div>
 
+
+
+
+
+
+
+
+
     <div ng-controller="TodoListController as todoList">
       <h4>Todo List Div (contains second ng-ctr)</h4>
       <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
@@ -58,13 +66,24 @@
             <span class="done-{{todo.done}}">{{todo.text}}</span>
           </label>
         </li>
+        <li>
+          <form ng-submit="todoList.addTodo()">
+          <input type="text" ng-model="todoList.todoText"  size="30"
+          placeholder="add new todo here">
+          <input class="btn-primary" type="submit" value="add">
+        </form>
+        </li>
       </ul>
-      <form ng-submit="todoList.addTodo()">
-        <input type="text" ng-model="todoList.todoText"  size="30"
-               placeholder="add new todo here">
-        <input class="btn-primary" type="submit" value="add">
-      </form>
     </div>
+
+
+
+
+
+
+
+
+
 
 
       <div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">

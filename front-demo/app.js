@@ -23,8 +23,8 @@ app.controller('TodoListController', function() {
     todoList.todos = [
       {text:'buy banana cake', done:true},
       {text:'eat banana cake', done:false},
-      {text:'make this todo like google keeps', done:false},
-      {text:'where you enter the todo where it will be displayed', done:false}];
+      {text:'make this todo like google keeps', done:true},
+      {text:'where you enter the todo where it will be displayed', done:true}];
  
     todoList.addTodo = function() {
       todoList.todos.push({text:todoList.todoText, done:false});
@@ -47,3 +47,9 @@ app.controller('TodoListController', function() {
       });
     };
   });
+
+// FUTURE AUDIO FUNCTIONALITY
+    // $scope.playAudio = function() {
+    //     var audio = new Audio('audio/song.mp3');
+    //     audio.play();
+    // };
