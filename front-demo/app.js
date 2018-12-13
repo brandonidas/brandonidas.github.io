@@ -22,9 +22,7 @@ app.controller('TodoListController', function() {
     var todoList = this;
     todoList.todos = [
       {text:'buy banana cake', done:true},
-      {text:'eat banana cake', done:false},
-      {text:'make this todo like google keeps', done:true},
-      {text:'where you enter the todo where it will be displayed', done:true}];
+      {text:'eat banana cake', done:false}];
  
     todoList.addTodo = function() {
       todoList.todos.push({text:todoList.todoText, done:false});
@@ -46,6 +44,11 @@ app.controller('TodoListController', function() {
         if (!todo.done) todoList.todos.push(todo);
       });
     };
+
+    todoList.removeItem = function(i){
+      todoList.todos.splice(i,1);
+
+    }
   });
 
 // FUTURE AUDIO FUNCTIONALITY

@@ -21,15 +21,18 @@
 
     <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
       <div class="col-md-5 p-lg-5 mx-auto my-5">
-        <h1 class="display-4 font-weight-normal">
-          >>>WORK IN PROGRESS<<<
+        <h3 >
+          >>WORK IN PROGRESS<<
           <br>
 
         Fancy featureful front end demo
 
-      </h1>
+      </h3>
         <p class="lead font-weight-normal">
           Made using angular.js rather than angular2 because github pages only supports a front end.
+        </p>
+        <p>
+          Note to self: Perhap use $http and set up on another server?
         </p>
         <a class="btn btn-outline-secondary" href="#">Coming soon</a>
       </div>
@@ -55,25 +58,43 @@
 
 
 
-    <div ng-controller="TodoListController as todoList">
-      <h4>Todo List Div (contains second ng-ctr)</h4>
+    <div class = "bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 overflow-hidden"
+    ng-controller="TodoListController as todoList">
+      <h4>Todo List</h4>
       <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
-      [ <a href="" ng-click="todoList.archive()">archive</a> ]
-      <ul class="unstyled">
-        <li ng-repeat="todo in todoList.todos">
+       <a href="" ng-click="todoList.archive()">archive</a>
+        <div ng-repeat="todo in todoList.todos">
           <label class="checkbox">
             <input type="checkbox" ng-model="todo.done">
             <span class="done-{{todo.done}}">{{todo.text}}</span>
+            <a href="" ng-click="todoList.removeItem($index)"> [x]</a>
           </label>
-        </li>
-        <li>
-          <form ng-submit="todoList.addTodo()">
-          <input type="text" ng-model="todoList.todoText"  size="30"
-          placeholder="add new todo here">
-          <input class="btn-primary" type="submit" value="add">
+        </div>
+        <div>
+        <label class="checkbox">
+
+        <form class="input-group input-group-sm mb-3" ng-submit="todoList.addTodo()">
+          <input type="text" ng-model="todoList.todoText" class="form-control" placeholder="something todo" >
+          <div class="input-group-append" id="button-addon4">
+            <button class="btn btn-outline-primary" type="submit">add</button>
+          </div>
         </form>
-        </li>
-      </ul>
+                implement this?
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <input type="checkbox" aria-label="Checkbox for following text input">
+            </div>
+          </div>
+          <input type="text" class="form-control" aria-label="Text input with checkbox">
+          <div class="input-group-append" id="button-addon4">
+            <button class="btn btn-outline-secondary" type="submit">x</button>
+          </div>
+        </div>
+        </div>
+        NOTE TO SELF: try this https://getbootstrap.com/docs/4.1/components/input-group/
+      
+
     </div>
 
 
