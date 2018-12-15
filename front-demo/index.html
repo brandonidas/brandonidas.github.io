@@ -41,14 +41,6 @@
     </div>
 
     <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-      
-      <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-        <div class="my-3 p-3">
-          <h2 class="display-5">Another headline</h2>
-          <p class="lead">And an even wittier subheading.</p>
-        </div>
-        <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-      </div>
 
 
 
@@ -92,11 +84,49 @@
           </div>
         </div>
         </div>
-        NOTE TO SELF: try this https://getbootstrap.com/docs/4.1/components/input-group/
-      
-
     </div>
 
+		<div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+			<div>
+				THE NG FUNCTION BOX
+				<br></br>
+				<label>Name:</label>
+				<input type="text" ng-model="yourName" placeholder="Enter a name here">
+				<hr>
+				<h1>Hello {{yourName}}!</h1>
+			</div>
+			 <tabs>
+				<pane title="Localization">
+					<span>Date: {{ '2012-04-01' | date:'fullDate' }}</span><br>
+					<span>Currency: {{ 123456 | currency }}</span><br>
+					<span>Number: {{ 98765.4321 | number }}</span><br>
+				</pane>
+				<br>
+				<pane title="Secret">
+					Sssshhh. This is just a piece of static text.
+					<br>
+					Everything else was pulled from app.js
+				</pane>
+
+				<pane title="Pluralization">
+					<div ng-controller="BeerCounter">
+						<div ng-repeat="beerCount in beers">
+							<ng-pluralize count="beerCount" when="beerForms"></ng-pluralize>
+						</div>
+					</div>
+				</pane>
+			</tabs>
+				</div>
+
+
+				<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="../dragons.jpg" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="../" class="btn btn-primary">Go Home</a>
+  </div>
+</div>
 
 
 
@@ -105,15 +135,6 @@
 
 
 
-
-
-      <div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
-        <div class="my-3 py-3">
-          <h2 class="display-5">Another headline</h2>
-          <p class="lead">And an even wittier subheading.</p>
-        </div>
-        <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-      </div>
     </div>
 
     <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
@@ -124,51 +145,16 @@
         </div>
         <div class="bg-white shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
       </div>
-  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-    <div>
-    	THE NG FUNCTION BOX
-    	<br></br>
-      <label>Name:</label>
-      <input type="text" ng-model="yourName" placeholder="Enter a name here">
-      <hr>
-      <h1>Hello {{yourName}}!</h1>
-    </div>
-     <tabs>
-      <pane title="Localization">
-        <span>Date: {{ '2012-04-01' | date:'fullDate' }}</span><br>
-        <span>Currency: {{ 123456 | currency }}</span><br>
-        <span>Number: {{ 98765.4321 | number }}</span><br>
-      </pane>
-      <pane title=uwu">
-
-      </pane>
-
-      <pane title="Pluralization">
-        <div ng-controller="BeerCounter">
-          <div ng-repeat="beerCount in beers">
-            <ng-pluralize count="beerCount" when="beerForms"></ng-pluralize>
-          </div>
-        </div>
-      </pane>
-    </tabs>
-      </div>
+			<div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+				<div class="my-3 py-3">
+					<h2 class="display-5">Another headline</h2>
+					<p class="lead">And an even wittier subheading.</p>
+				</div>
+				<div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+			</div>
     </div>
 
     <br></br>
-     <tabs>
-      <pane title="Localization">
-        <span>Date: {{ '2012-04-01' | date:'fullDate' }}</span><br>
-        <span>Currency: {{ 123456 | currency }}</span><br>
-        <span>Number: {{ 98765.4321 | number }}</span><br>
-      </pane>
-      <pane title="Pluralization">
-        <div ng-controller="BeerCounter">
-          <div ng-repeat="beerCount in beers">
-            <ng-pluralize count="beerCount" when="beerForms"></ng-pluralize>
-          </div>
-        </div>
-      </pane>
-    </tabs>
 
 
     <footer class="container py-5">
@@ -236,11 +222,6 @@
           </li>
           <li class="nav-item dropup">
             <a class="nav-link dropdown-toggle" href="https://getbootstrap.com" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropup</a>
-<!--             <div class="dropdown-menu" aria-labelledby="dropdown10">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div> -->
           </li>
         </ul>
       </div>
