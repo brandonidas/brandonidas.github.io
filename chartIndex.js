@@ -65,14 +65,12 @@ var radarChart = new Chart(ctx2, {
         label : "Self-reported OCEAN",
         data: [9, 9, 8,5,6],
         pointBackgroundColor: "red",
-        borderColor: "red",
         backgroundColor: 'rgba(255, 99, 132, 0.5)'
     },{
 
       label : "Correlated with CS Proficiency",
       data: [10, 10,5,0,0],
       pointBackgroundColor: "blue",
-      borderColor: "blue",
       backgroundColor: 'rgba(54, 162, 235, 0.5)'
     }],
 
