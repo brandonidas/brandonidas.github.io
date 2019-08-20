@@ -37,7 +37,7 @@ var stackedChart = new Chart(ctx1, {
   				options: {
   					title: {
   						display: true,
-  						text: "CS Students TA'd"
+  						text: "UBC Computer Science Students TA'd"
   					},
   					tooltips: {
   						mode: 'index',
@@ -62,13 +62,13 @@ var radarChart = new Chart(ctx2, {
     data: {
     datasets: [{
       // Self-reported OCEAN
-        label : "Self-reported OCEAN",
+        label : "Self-reported Big-5",
         data: [9, 9, 8,5,6],
         pointBackgroundColor: "red",
         backgroundColor: 'rgba(255, 99, 132, 0.5)'
     },{
 
-      label : "Correlated with CS Proficiency",
+      label : "'CS-Wiz' trait-correlations",
       data: [10, 10,5,0,0],
       pointBackgroundColor: "blue",
       backgroundColor: 'rgba(54, 162, 235, 0.5)'
@@ -82,7 +82,12 @@ var radarChart = new Chart(ctx2, {
         'Agreeableness',
         'Neuroticism',
     ]},
-    //options: options
+    options: {
+      title: {
+        display: true,
+        text: "My Personality"
+      }
+    }
 });
 
 // Struggle, fulfilment and personal growth
@@ -112,9 +117,10 @@ var fulfilmentConfig = {
 				}]
 			},
 			options: {
-				title: {
-					text: 'Personal Growth Chart'
-				}
+        title: {
+          display: true,
+          text: "Personal Growth Chart"
+        }
 			}
 		};
 var fulfillment = new Chart(ctx3, fulfilmentConfig);
