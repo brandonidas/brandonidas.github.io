@@ -1,78 +1,124 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<body>
-  <br>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md">
-        <h1>Charting Brandon Tong</h1>
-      </div>
-      <div class="col-md">
-        <a class="btn btn-outline-info" href="https://github.com/brandonidas">
-          GitHub</a>
-        <a class="btn btn-outline-info" href="https://www.linkedin.com/in/brandon-tong-875bba88/">
-          LinkedIn</a>
-        <button type="button" class="btn btn-outline-warning">Instagram</button>
-      </div>
-    </div>
-  </div>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm" style="display: inline-block; vertical-align:top;border: 1px solid black;">
-        <canvas id="myChart2"></canvas>
-        Fig. 1. <a href="https://www.researchgate.net/figure/46_tbl1_280008475">See this.</a>
-      </div>
-      <div class="col-sm" style="display: inline-block; vertical-align:top;border: 1px solid black;">
-        <canvas id="myChart3"></canvas>
-        Fig. 2
-      </div>
-      <div class="col-sm" style="display: inline-block;border: 1px solid black;">
-        <canvas id="myChart1"></canvas>
-        Fig. 3
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>BT</title>
+  </head>
+  <body>
+    <br>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg">
+          <h1>Charting Brandon Tong</h1>
+        </div>
+        <div class="col-md">
+          <a class="btn btn-outline-info" href="https://github.com/brandonidas">
+            GitHub</a>
+          <a class="btn btn-outline-info" href="https://www.linkedin.com/in/brandon-tong-875bba88/">
+            LinkedIn</a>
+          <button type="button" class="btn btn-outline-warning">Instagram</button>
+        </div>
       </div>
     </div>
-    <p>The above also serves as a sneaky demonstration of data visualisation.</p>
-  </div>
-  <div class="container">
-    <h2>Let me introduce myself!</h2>
-    <p>I'm a third year Computer Science undergraduate at the University of British Columbia.
-      I am a Teaching Assistant for Computer Science 110 (Systematic Program Design)
-      and 210 (Software Construction with Java). And love it! (See fig.2, fig.3)
-      I enjoy puzzles and thinking through proofs - which drew me to Computer Science.</p>
-    <p>Lately, I've been thinking about the *domain* of the puzzles I want to solve in my lifetime,
-    which has led to start thinking about a second major in a Life Science.
-    Pharmacology? Biochemistry? Proteomics? They all seem so ripe with complexity
-    - and ready to be computationally reaped!</p>
-    <p>I'm a very proud former member of the Military Medicine Institute (Singapore).
-      I did not think much of myself prior to my time there and I have my commanders to thank for
-      uncovering a lot of the better parts of who I am today. (See fig.2)</p>
-  </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm" style="display: inline-block; vertical-align:top;border: 1px solid black;">
+          <canvas id="myChart2"></canvas>
+          Fig. 1. <a href="https://www.researchgate.net/figure/46_tbl1_280008475">See this.</a>
+        </div>
+        <div class="col-sm" style="display: inline-block; vertical-align:top;border: 1px solid black;">
+          <canvas id="myChart3"></canvas>
+          Fig. 2
+        </div>
+        <div class="col-sm" style="display: inline-block;border: 1px solid black;">
+          <canvas id="myChart1"></canvas>
+          Fig. 3
+        </div>
+      </div>
+      <p><small>^ This above also serves as a sneaky demonstration for data visualisation.</small></p>
+    </div>
+    <div class="container">
+      <h2>Let me introduce myself!</h2>
+      <p>I'm a third year Computer Science undergraduate at the University of British Columbia.
+        I am a Teaching Assistant for Computer Science 110 (Systematic Program Design)
+        and 210 (Software Construction with Java). And love it! (See fig.2, fig.3)
+        I enjoy puzzles and thinking through proofs - which drew me to Computer Science.</p>
+      <p>Lately, I've been thinking about the *domain* of the puzzles I want to solve in my lifetime,
+      which has led to start thinking about a second major in a Life Science.
+      Pharmacology? Biochemistry? Proteomics? They all seem so ripe with complexity
+      - and ready to be computationally reaped!</p>
+      <p>I'm a very proud former member of the Military Medicine Institute (Singapore).
+        I did not think much of myself prior to my time there and I have my commanders to thank for
+        uncovering a lot of the better parts of who I am today. (See fig.2)</p>
+    </div>
 
-  <div class="container">
-    <h2>TODO: Portfolio</h2>
-    <div class="row">
-      <div class="col-sm">
-        Image Compression on a Torus
+    <div class="container">
+      <h2>TODO: Portfolio</h2>
+      <div class="row">
+        <div class="col-sm">
+          <div class="card border-info">
+            <img class="card-img-top" src="smallme.jpg" alt="Card image cap">
+            <div class="card-body">
+              Image Compression on a Torus, in C++, for CPSC 221 coursework
+            </div>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="card border-info">
+            <img class="card-img-top" src="smokers.jpg" alt="Card image cap">
+            <div class="card-body">
+              Smokers and Dining Philosophers Synchronisation, in C using semaphores,
+              for CPSC 213 coursework
+            </div>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="card border-info">
+            <img class="card-img-top" src="bus.jpg" alt="Card image cap">
+            <div class="card-body">
+              Buses 'R' Us, Bus Android App, for CPSC 210 coursework
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-sm">
-        Smokers and Dining Philosophers Synchronisation
-      </div>
-      <div class="col-sm">
-        Buses 'R' Us
+      <br>
+      <div class="row">
+        <div class="col-sm">
+          <div class="card border-info mb-3">
+            <img class="card-img-top" src="ocr.png" alt="Card image cap">
+            <div class="card-body">
+              "0"-"9" Optical Character Recognition, in Octave,
+              Machine Learning (Coursera, Andrew Ng)
+            </div>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="card border-info mb-3">
+            <img class="card-img-top" src="choiciture.png" alt="Card image cap">
+            <div class="card-body">
+              Choiciture - Instagam-like app. Full Stack Javascript (M.E.A.N js)
+            </div>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="card border-info mb-3">
+            <img class="card-img-top" src="smallme.jpg" alt="Card image cap">
+            <div class="card-body">
+              // PLACEHOLDER //
+              <br> TODO: link and explain in seperate html files per portfolio item
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm">
-        "1"-"10" Optical Character Recognition, in Octave,
-        Machine Learning (Coursera, Andrew Ng)
-      </div>
-      <div class="col-sm">
-        Choiciture - Instagam-like app. Full Stack Javascript (MEAN.js)
-      </div>
-      <div class="col-sm">
-        // Placeholder //
-      </div>
-    </div>
-  </div>
-</body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
-<script src="chartIndex.js"></script>
+    <br>
+    <!-- <div class="container">
+      <h2>btw this me</h2>
+      <img src="smallme.jpg" class="img-fluid rounded mx-auto d-block" alt="Responsive image">
+    </div> -->
+    <br><br><br>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+  <script src="chartIndex.js"></script>
+</html>

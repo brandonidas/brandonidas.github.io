@@ -69,9 +69,9 @@ var radarChart = new Chart(ctx2, {
     },{
 
       label : "'CS-Wiz' trait-correlations",
-      data: [10, 10,5,0,0],
+      data: [10, 10,0,5,5],
       pointBackgroundColor: "blue",
-      backgroundColor: 'rgba(54, 162, 235, 0.5)'
+      backgroundColor: 'rgba(54, 162, 235, 0.9)'
     }],
 
     // These labels appear in the legend and in the tooltips when hovering different arcs
