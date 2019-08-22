@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>BT</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Image Compression On a Torus</h1>
+      <small>For CPSC 221, Winter Term 2 2018, UBC</small>
+      <div class="row">
+        <div class="col-md">
+          510 kb (100%)
+          <img class="img-fluid rounded mx-auto d-block" src="bus-squared.png" alt="">
+        </div>
+        <div class="col-md">
+          157 kb (31%)
+          <img class= "img-fluid rounded mx-auto d-block" src="bus-compressed.png" alt="">
+        </div>
+      </div>
+      <br>
+      <br>
+      <h2>DRAFT: Approach</h2>
+      <p>Torus. Entropy. Pixel Manipulation. Wrapping sections of the image to make a torus</p>
+      <small>Reference: https://www.students.cs.ubc.ca/~cs-221/2018W2/mps/p3/</small>
+      <br>
+      <h3>Data Structure: Quad-Trees</h3>
+      <p>Similar to a binary tree but with four children instead of two.
+        For the purpose of this project, the tree is perfect
+        (until pruned - a later step). The image needs to be (2^n)x(2^n),
+        so it can be further sub-divided into four (2^(n-1))x(2^(n-1)).
+        This process is done recursively until the quadrant, now leaf,
+        is just 1x1 - ie a single pixel. The root is entire image and
+        each child is a quadrant of that it's parent.</p>
+      <h3>Minimum Entropy Point</h3>
+      <p>Now we stipulate that each quadrant has to picked on the basis of each
+        having a point in which the entropy over the entire image is minimised.
+        The function which calculated entropy was provided for the students,
+        including myself, so our task was to just minimise it when selecting quadrants. </p>
+      <h3>Wrapping Sections ("Torus"-ing)</h3>
+      <p>Minimising the entropy necessitated sometimes wrapping a quadrant from
+        one edge to another. // TODO create image to illustrate this </p>
+      <h3>Pruning</h3>
+      <p>Done recursively on the basis of tolerance. If a quadrant was not within
+        the given tolerance, it and all of it's children would be deleted.</p>
+      <h3>Rendering</h3>
+      <p>When rendering, if the node of the quadtree had its children pruned,
+        the pixels; contained within the children; would be filled recursively with
+        the colour-average of the parent node.</p>
+      <h3>Result</h3>
+      <p>The result is lossy compression!</p>
+    </div>
+  </body>
+</html>

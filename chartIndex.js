@@ -83,6 +83,7 @@ var radarChart = new Chart(ctx2, {
         'Neuroticism',
     ]},
     options: {
+      responsive: true,
       title: {
         display: true,
         text: "My Personality"
@@ -117,6 +118,7 @@ var fulfilmentConfig = {
 				}]
 			},
 			options: {
+        responsive: true,
         title: {
           display: true,
           text: "Personal Growth Chart"
