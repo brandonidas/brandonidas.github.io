@@ -43,7 +43,7 @@ var stackedChart = new Chart(ctx1, {
   						mode: 'index',
   						intersect: false
   					},
-  					responsive: true,
+  					// responsive: true,
   					scales: {
   						xAxes: [{
   							stacked: true,
@@ -83,7 +83,7 @@ var radarChart = new Chart(ctx2, {
         'Neuroticism',
     ]},
     options: {
-      responsive: true,
+      // responsive: true,
       title: {
         display: true,
         text: "My Personality"
@@ -118,7 +118,7 @@ var fulfilmentConfig = {
 				}]
 			},
 			options: {
-        responsive: true,
+        // responsive: true,
         title: {
           display: true,
           text: "Personal Growth Chart"
