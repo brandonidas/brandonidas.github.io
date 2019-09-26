@@ -25,7 +25,7 @@
       <p>Torus. Entropy. Pixel Manipulation. Wrapping sections of the image to make a torus</p>
       <small>Reference: https://www.students.cs.ubc.ca/~cs-221/2018W2/mps/p3/</small>
       <br>
-      <h3>Data Structure: Quad-Trees</h3>
+      <h3>Underlying Data Structure: Quad-Trees</h3>
       <p>Similar to a binary tree but with four children instead of two.
         For the purpose of this project, the tree is perfect
         (until pruned - a later step). The image needs to be (2^n)x(2^n),
@@ -34,8 +34,8 @@
         is just 1x1 - ie a single pixel. The root is entire image and
         each child is a quadrant of that it's parent.</p>
       <h3>Minimum Entropy Point</h3>
-      <p>Now we stipulate that each quadrant has to picked on the basis of each
-        having a point in which the entropy over the entire image is minimised.
+      <p>Now we find a leaf on each quadrant where, if filled by that colour-average, 
+        its entropy over the entire image is minimised.
         The function which calculated entropy was provided for the students,
         including myself, so our task was to just minimise it when selecting quadrants. </p>
       <h3>Wrapping Sections ("Torus"-ing)</h3>
@@ -43,7 +43,7 @@
         one edge to another. // TODO create image to illustrate this </p>
       <h3>Pruning</h3>
       <p>Done recursively on the basis of tolerance. If a quadrant was not within
-        the given tolerance, it and all of it's children would be deleted.</p>
+        the given tolerance, it and all of it's children would be and filled.</p>
       <h3>Rendering</h3>
       <p>When rendering, if the node of the quadtree had its children pruned,
         the pixels; contained within the children; would be filled recursively with

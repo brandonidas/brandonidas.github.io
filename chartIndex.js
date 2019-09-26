@@ -96,13 +96,15 @@ var fulfilmentConfig = {
 			type: 'bar',
 			data: {
 				labels: [ "Pre-Army","Recruit","Medical Corps", "UBC Freshmen"],
-				datasets: [{
-					type: 'bar',
-					label: 'Negative Emotion',
-					backgroundColor: 'rgba(255, 99, 132, 0.7)',
-					borderColor: 'rgba(255, 99, 132, 1)',
-					data: [3,3,2.5,2],
-				}, {
+				datasets: [
+        //   {
+				// 	type: 'bar',
+				// 	label: 'Negative Emotion',
+				// 	backgroundColor: 'rgba(255, 99, 132, 0.7)',
+				// 	borderColor: 'rgba(255, 99, 132, 1)',
+				// 	data: [3,3,2.5,2],
+        // }, 
+        {
 					type: 'bar',
 					label: 'Socio-Intellectual Growth',
 					backgroundColor: 'rgba(54, 162, 235, 0.7)',
@@ -110,7 +112,7 @@ var fulfilmentConfig = {
 					data: [1,1,3,3],
 				},{
 					type: 'line',
-					label: 'Self-Respect/Actualisation',
+					label: 'Self-Actualisation',
 					backgroundColor: 'orange',
 					borderColor: 'orange',
 					fill: true,
