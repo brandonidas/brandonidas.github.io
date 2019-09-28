@@ -30,7 +30,11 @@
     <h1 class="display-4">Simple Linear Regression with tensorflow.js</h1>
     <canvas id="myChart1"></canvas>
     <br>
-    <button class="btn btn-danger btn-lg" style="display: block; margin: 0 auto;" onclick="linearPredict()">Train and Predict</button>
+    <button class="btn btn-danger btn-lg btn-block" style="display: block; margin: 0 auto;" onclick="linearPredict()">Click to Predict</button>
+    <br>
+    <button class="btn btn-warning btn-lg btn-block" style="display: block; margin: 0 auto;" onclick="newData()">Generate Data and Retrain</button>
+
+    <br>
     <p id="xV"></p>
     <p id="yV"></p>
     <p id="demo"></p>
@@ -44,6 +48,9 @@
     <p>Errors were present, given the small sample size, there were sizable deviations from the y=x line.
     </p>
   </div>
+  <br>
+  <br>
+  <br>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
 

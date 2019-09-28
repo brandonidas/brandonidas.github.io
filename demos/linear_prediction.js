@@ -4,7 +4,7 @@ console.log('Hello TensorFlow');
 // r is random variance along y axis
 // n is number of data points
 function createData(m = 1, r = 2.3, n = 10) {
-    xyObjectArray = [];
+    ret = [];
     for (i = 0; i < n; i++) {
         yEntropy = r*((Math.random() > 0.5) ? - Math.random() : Math.random())
         var xy = {
@@ -12,16 +12,25 @@ function createData(m = 1, r = 2.3, n = 10) {
             y: Math.round((i + yEntropy) * 100) / 100
         }
         console.log("y value added:" + yEntropy)
-        xyObjectArray.push(xy);
+        ret.push(xy);
     }
-    return xyObjectArray;
+    return ret;
 }
 xyObjectArray = createData();
+
+function newData(){
+    xyObjectArray = createData();
+    while(scatterChart.data.datasets.length > 1) {
+        scatterChart.data.datasets.pop();
+    }
+    scatterChart.data.datasets[0].data = xyObjectArray;
+    linearTrain();
+    scatterChart.update();
+}
 
 var ctx = document.getElementById('myChart1').getContext('2d');
 var scatterChart = new Chart(ctx, {
     type: 'line',
-
     data: {
         datasets: [{
             borderColor: 'rgba(54, 162, 235, 0.9)',
@@ -53,17 +62,11 @@ function addData(dataXYArray) {
         fill:false,
     }
     scatterChart.data.datasets.push(dataset);
-    // scatterChart.data.datasets.forEach((dataset) => {
-    //     dataset.data.push(data);
-    // });
     scatterChart.update();
 }
-// async function learnLinear(){
-//     const model = tf.sequential
-// }
-async function linearPredict() {
+const model = tf.sequential();
+async function linearTrain() {
     console.log("linearPredict")
-    const model = tf.sequential();
     model.add(tf.layers.dense({ inputShape: [1], units: 1 }));
     model.compile({
         loss: 'meanSquaredError',
@@ -79,7 +82,9 @@ async function linearPredict() {
     const xs = tf.tensor2d(xArray, [xArray.length, 1])
     const ys = tf.tensor2d(yArray, [yArray.length, 1])
     await model.fit(xs, ys, { epochs: 100 });
+}
 
+function linearPredict(){
     // PREDICTION PHASE
     inputXArray = Array.from(Array(xyObjectArray.length).keys())
     console.log("inputXarray = "+ inputXArray)
@@ -98,3 +103,4 @@ async function linearPredict() {
     addData(predictedData)
 
 }
+linearTrain()

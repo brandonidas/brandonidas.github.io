@@ -66,7 +66,29 @@
     <h2>Portfolio</h2>
     <p>Some of the projects have their own web page for explaination while others have just a card.</p>
     <div class="row">
-      <div class="col-sm link">
+        <div class="col-sm">
+            <div class="card border-info">
+              <img class="card-img-top" src="bus-squared.png" alt="Card image cap">
+              <div class="card-body">
+                Buses 'R' Us, Bus Android App, for CPSC 210 coursework
+                <details>
+                  <summary>Not a lot can be said about this one...</summary>
+                  <p><i>The code was not allowed to be published as the project
+                      was reused. </i></p>
+                  <p> Nonetheless I can say that I used a public transit API to retrieve both the timings and variable
+                    routes of buses in British Columbia (yes bus routes in BC change seasonally especially around UBC). Then
+                    mapped
+                    these onto an a street map of the area.
+                  </p>
+                  <p>It was meant an introduction to indsutry work (via a real world API and app), Object Oriented
+                    Programming
+                    and Design Patterns (Observer, Composite and Iterator).</p>
+                  <p>I'm using a details-summary card because I feel a web page would've been overkill.</p>
+                </details>
+              </div>
+            </div>
+          </div>
+      <div class="col-sm">
         <a href="./portfolio/image-compression-on-torus.html">
           <div class="card border-info">
             <!-- onclick="location.href='image-compression-on-torus.html';" -->
@@ -83,28 +105,6 @@
           <div class="card-body">
             Smokers and Dining Philosophers Synchronisation, in C using semaphores,
             for CPSC 213 coursework.
-          </div>
-        </div>
-      </div>
-      <div class="col-sm">
-        <div class="card border-info">
-          <img class="card-img-top" src="bus-squared.png" alt="Card image cap">
-          <div class="card-body">
-            Buses 'R' Us, Bus Android App, for CPSC 210 coursework
-            <details>
-              <summary>Not a lot can be said about this one...</summary>
-              <p><i>The code was not allowed to be published as the project
-                  was reused. </i></p>
-              <p> Nonetheless I can say that I used a public transit API to retrieve both the timings and variable
-                routes of buses in British Columbia (yes bus routes in BC change seasonally especially around UBC). Then
-                mapped
-                these onto an a street map of the area.
-              </p>
-              <p>It was meant an introduction to indsutry work (via a real world API and app), Object Oriented
-                Programming
-                and Design Patterns (Observer, Composite and Iterator).</p>
-              <p>I'm using a details-summary card because I feel a web page would've been overkill.</p>
-            </details>
           </div>
         </div>
       </div>
@@ -131,24 +131,26 @@
         </a>
       </div>
       <div class="col-sm">
-        <a href="./demos/linear_prediction_tensorflow.html">
-          <div class="card border-info mb-3">
+        <div class="card border-info mb-3">
+          <a href="./demos/linear_prediction_tensorflow.html">
             <img class="card-img-top" src="tfjs.png" alt="Card image cap">
-            <div class="card-body">
+          </a>
+          <div class="card-body">
+            <a href="./demos/linear_prediction_tensorflow.html">
               A Simple Linear Regression from semi-random Data in tf.js
-              <details>
-                <summary>More tf.js to come...</summary>
-                I initially did this because I drank too much coffee but these web demos are much more presentable than
-                just a repo!
-              </details>
-            </div>
-        </a>
+            </a>
+            <details>
+              <summary>More tf.js to come...</summary>
+              I initially did this because I drank too much coffee one evenin. But looking at it, this web demo is much more presentable than
+              just a repo.
+            </details>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <small>PS. I don't consider this website a part of my portfolio because of its bare-bones nature</small>
-  </div>
+    <div class="row">
+      <small>PS. I don't consider this website a part of my portfolio because of its bare-bones nature</small>
+    </div>
   </div>
   <br>
 
@@ -167,13 +169,13 @@
         <tr>
           <td>IOT Projects</td>
           <td>Arduino and Raspberry Pi - which my mum got from the one and only brick-and-mortar Raspberry pi store in
-            Cambridge
-            University</td>
+            Cambridge University</td>
         </tr>
         <tr>
           <td>(Small scale) Scala Smokers</td>
-          <td>as Scala seems very important in a lot of data science jobs
-            https://twitter.github.io/scala_school/concurrency.html</td>
+          <td>As Scala seems very important in a lot of data science jobs from my search. This language is functional (which I love) and has
+            popped up a number of times also for high frequency trading too.
+          </td>
         </tr>
       </tbody>
     </table>
