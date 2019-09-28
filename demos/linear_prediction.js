@@ -2,7 +2,7 @@ console.log('Hello TensorFlow');
 // y = mx + 0, predict m
 // r is random variance along y axis of data
 // n is number of data points
-function createData(m = 1, r = 2, n = 10) {
+function createData(m = 1, r = 3, n = 10) {
     xyObjectArray = [];
     for (i = 0; i < n; i++) {
         yEntropy = r*((Math.random() > 0.5) ? - Math.random() : Math.random())
@@ -23,7 +23,6 @@ var scatterChart = new Chart(ctx, {
     label: xyObjectArray.map(e => e.x),
     data: {
         datasets: [{
-            type: 'scatter',
             borderColor: 'rgba(54, 162, 235, 0.9)',
             backgroundColor: 'rgba(54, 162, 235, 0.9)',
             label: 'Sample Linear Data',
