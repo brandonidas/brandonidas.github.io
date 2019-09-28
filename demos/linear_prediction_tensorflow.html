@@ -24,21 +24,25 @@
       </div>
     </div>
   </div>
-  <div class="container">
+  <br>
+
+  <div class="container ">
     <h1 class="display-4">Simple Linear Regression with tensorflow.js</h1>
     <canvas id="myChart1"></canvas>
-    <p>x Values</p>
+    <br>
+    <button class="btn btn-danger btn-lg" style="display: block; margin: 0 auto;" onclick="linearPredict()">Train and Predict</button>
     <p id="xV"></p>
-    <p>y Values</p>
     <p id="yV"></p>
     <p id="demo"></p>
-  </div>
-  <div class="container">
-    <a class="btn btn-info" href="https://github.com/brandonidas">
-      GitHub</a>
-    <a class="btn btn-info" href="https://www.linkedin.com/in/brandon-tong-875bba88/">
-      LinkedIn</a>
-    <a class="btn btn-primary" href="../index.html">Home</a>
+    <p>I drank too much coffee and watched this <a href="https://www.youtube.com/watch?v=pbCExciEbrc">tutorial</a>. Shout out to the people
+    at google for making such awesome tools and then making resources for people like me to learn from!</p>
+    <h3>Analysis</h3>
+    <p>This was very simple. The data was generated from a simple y = x formula, then the y-values were given a random additive on [-2.3,2.3].
+      Then the model fit a 2D sample matrix over ~100 epochs. A prediction vector was extracted from the model along the original x-values and then
+      rendered as a line via chart.js.
+    </p>
+    <p>Errors were present, given the small sample size, there were sizable deviations from the y=x line.
+    </p>
   </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
