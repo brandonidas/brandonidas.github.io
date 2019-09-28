@@ -1,81 +1,136 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>BT</title>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Image Compression On a Torus</h1>
-      <small>For CPSC 221, Winter Term 2 2018, UBC</small>
-      <div class="row">
-        <div class="col-md">
-          510 kb (100%)
-          <img class="img-fluid rounded mx-auto d-block" src="bus-squared.png" alt="">
-        </div>
-        <div class="col-md">
-          157 kb (31%)
-          <img class= "img-fluid rounded mx-auto d-block" src="bus-compressed.png" alt="">
-        </div>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>BT</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>INCOMPLETE DRAFT: Image Compression On a Torus</h1>
+    <small>For CPSC 221, Winter Term 2 2018, UBC</small>
+    <div class="row">
+      <div class="col-md">
+        510 kb (100%)
+        <img class="img-fluid rounded mx-auto d-block" src="bus-squared.png" alt="">
       </div>
-      <br>
-      <br>
-      <h2>DRAFT: Approach</h2>
-      <p>Torus. Entropy. Pixel Manipulation. Wrapping sections of the image to make a torus</p>
-      <small>Reference: https://www.students.cs.ubc.ca/~cs-221/2018W2/mps/p3/</small>
-      <br>
-      <h3>Underlying Data Structure: Quad-Trees</h3>
-      <p>Similar to a binary tree but with four children instead of two.
-        For the purpose of this project, the tree is perfect
-        (until pruned - a later step). The image needs to be (2^n)x(2^n),
-        so it can be further sub-divided into four (2^(n-1))x(2^(n-1)).
-        This process is done recursively until the quadrant, now leaf,
-        is just 1x1 - ie a single pixel. The root is the entire image and
-        each child is a quadrant of that its parent.</p>
-        <p>And it is divided an at optimal splitting point as described below.</p>
-      <h3>Minimum Entropy Point</h3>
-      <p>Now we find a leaf on each quadrant where, if filled by that colour-average, 
-        its entropy over the entire image is minimised.
-        The function which calculated entropy was provided for the students,
-        including myself, so our task was to just minimise it when selecting quadrants via a search. </p>
-
-
-
-
-      <!-- <h3>Underlying Data Structure: Stats Object</h3>
-        <p>The stats object contains 5 2-dimensional vectors. 4 are for provided entropy function.
-          The 5th vector is a 'histogram' the first dimension being ____ and the second dimension being
-          ____.
-        </p>
-        <p>This object is constructed _____ and methods ____ are called when ______. 
-          It allows for ______
-        </p>
-        <q>The stats class is used only for constructing a node of the toqutree.
-          The choice of optimal split requires the computation of statistics over each 
-          candidate split, and these are simply too expensive to compute in real time, 
-          especially given the number of squares in our recursively defined tree! Instead, 
-          we precompute support structures that allow the necessary statistics to be computed 
-          in constant time. We request a particular set of structures, but we leave it as a puzzle 
-          for you to figure out how to use them to get the info you need.
-          </q> -->
-
-
-
-
-
-      <h3>Wrapping Sections ("Torus"-ing)</h3>
-      <p>Minimising the entropy necessitated sometimes wrapping a quadrant from
-        one edge to another. // TODO create image to illustrate this </p>
-      <h3>Pruning</h3>
-      <p>Done recursively on the basis of tolerance. If a quadrant was not within
-        the given tolerance, it and all of it's children would be and filled.</p>
-      <h3>Rendering</h3>
-      <p>When rendering, if the node of the quadtree had its children pruned,
-        the pixels; contained within the children; would be filled recursively with
-        the colour-average of the parent node.</p>
-      <h3>Result</h3>
-      <p>The result is lossy compression!</p>
+      <div class="col-md">
+        157 kb (31%)
+        <img class="img-fluid rounded mx-auto d-block" src="bus-compressed.png" alt="">
+      </div>
     </div>
-  </body>
+    <br>
+    <br>
+    <h2>DRAFT: Approach</h2>
+    <p>Torus. Entropy. Pixel Manipulation. Wrapping sections of the image to make a torus</p>
+    <small>Reference: https://www.students.cs.ubc.ca/~cs-221/2018W2/mps/p3/</small>
+    <br>
+    <h3>Underlying Data Structure: Quad-Trees</h3>
+    <p>Similar to a binary tree but with four children instead of two.
+      For the purpose of this project, the tree is perfect
+      (until pruned - a later step). The image needs to be \(2^n * 2^n \) pixels,
+      so it can be further sub-divided into four \( 2^{n-1} * 2^{n-1} \) child-quadrants.
+      This process is done recursively until the quadrant, now leaf,
+      is just \(1 * 1 \) - ie a single pixel. The root is the entire image and
+      each child is a quadrant of that its parent.</p>
+    <p>The point at which the node is divided is at an optimal splitting point as described below.</p>
+    <h3>Minimum Entropy Point</h3>
+    <p>Now we find a leaf on each quadrant where, if filled by that colour-average,
+      its entropy over the entire image is minimised.
+      The function which calculated entropy was provided for the students,
+      including myself, so our task was to just minimise it when selecting quadrants via a search. </p>
+    <p>However, the challenge is doing this in a reasonable runtime. Owing to the fact that searching
+      for a single pixel via that pixel having to optimise over \( m \) pixels is a runtime of
+      \(O(m^2)\) per level of the quadtree. Using simple properties, it can be understood that
+      the there would \(log4(m) \) levels. The runtime thus totalling \(O(m^2log4(m))\), far from ideal.
+    </p>
+    <h3>*This is the brilliant part* Stats Object</h3>
+    <p><i>Instead, we precompute support structures that allow the necessary entropy statistics to be computed
+        in constant time.</i> Theoretically making this compression run in \(O(mlog4(m))\).
+      The stats object contains four 2-dimensional vectors of doubles and a single 3-dimensional
+      historgram of integers.</p>
+
+    <p>Four 2-Dimensional Vectors For Colour Channel Summation</p>
+    <ul class="list">
+      <li>Sum of HueX</li>
+      <li>Sum of HueY</li>
+      <li>Sum of Saturation</li>
+      <li>Sum of Luminosity</li>
+    </ul>
+    <p>Each of these is the summation from (0,0) to the end of the image. These 2D vectors are for the
+      given entropy function. However, hue is on 2 dimensions system but we need to reduce that to 1.
+      That's where the 3D historgram comes in.
+    </p>
+
+    <p>Single 3-Dimensional Historgram of Hue Values</p>
+    <ul class="list">
+      <li>dimensions x and y corresponding to pixels</li>
+      <li>dimenion z corresponding to a 10 bins of the <i>count</i> of values within 10 corresponding intervals. After
+        after reducing the hue to a single dimension on 0 to 360 via a given formula.
+        Thus, each bin is a count of values within some 36-wide interval. For example: </li>
+    </ul>
+    <table class="table table-hover table-bordered ">
+      <thead>
+        <tr>
+          <th scope="col">hist[i][j]</th>
+          <td scope="col">[0]</td>
+          <td scope="col">[1]</td>
+          <td scope="col">[2]</td>
+          <td scope="col">[3]</td>
+          <td scope="col">[4]</td>
+          <td scope="col">[5]</td>
+          <td scope="col">[6]</td>
+          <td scope="col">[7]</td>
+          <td scope="col">[8]</td>
+          <td scope="col">[9]</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">for interval</th>
+          <td>0-35</td>
+          <td>36-71</td>
+          <td>72-107</td>
+          <td>108-143</td>
+          <td>144-179</td>
+          <td>180-215</td>
+          <td>216-251</td>
+          <td>252-287</td>
+          <td>288-323</td>
+          <td>324-359</td>
+        </tr>
+        <tr>
+          <th scope="row">count/value</th>
+          <td>x</td>
+          <td>xxx</td>
+          <td>xxxx</td>
+          <td>x</td>
+          <td>xxx</td>
+          <td>xxx</td>
+          <td>x</td>
+          <td>xx</td>
+          <td>xxx</td>
+          <td>x</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <h3>Wrapping Sections ("Torus"-ing)</h3>
+    <p>Minimising the entropy necessitated sometimes wrapping a quadrant from
+      one edge to another. // TODO create image to illustrate this </p>
+    <h3>Pruning</h3>
+    <p>Done recursively on the basis of tolerance. If a quadrant was not within
+      the given tolerance, it and all of it's children would be and filled.</p>
+    <h3>Rendering</h3>
+    <p>When rendering, if the node of the quadtree had its children pruned,
+      the pixels; contained within the children; would be filled recursively with
+      the colour-average of the parent node.</p>
+    <h3>Result</h3>
+    <p>The result is lossy compression!</p>
+  </div>
+</body>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> </script>
 </html>
