@@ -1,4 +1,27 @@
-console.log('Hello TensorFlow');
+// GLOBAL VARIABLES
+const model = tf.sequential();
+var xySampleArray = createData();
+var ctx = document.getElementById('myChart1').getContext('2d');
+var scatterChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        datasets: [{
+            borderColor: 'rgba(54, 162, 235, 0.9)',
+            backgroundColor: 'rgba(54, 162, 235, 0.9)',
+            label: 'Sample Linear Data',
+            data: xySampleArray,
+            showLine: false
+        }]
+    },
+    options: {
+        scales: {
+            xAxes: [{
+                type: 'linear',
+                position: 'bottom'
+            }]
+        }
+    }
+});
 
 // y = mx + 0, predict m
 // r is random variance along y axis
@@ -16,39 +39,20 @@ function createData(m = 1, r = 2.3, n = 10) {
     }
     return ret;
 }
-xyObjectArray = createData();
 
+// Clear old data, generates new sample data, retrain model and update chart
+// BUG: after about a dozen or so call to newData() and linearPredict(),
+//      the regression line becomes y = 4.54.. or some other constant.
 function newData(){
-    xyObjectArray = createData();
+    xySampleArray = createData();
     while(scatterChart.data.datasets.length > 1) {
         scatterChart.data.datasets.pop();
     }
-    scatterChart.data.datasets[0].data = xyObjectArray;
+    scatterChart.data.datasets[0].data = xySampleArray;
     linearTrain();
     scatterChart.update();
 }
 
-var ctx = document.getElementById('myChart1').getContext('2d');
-var scatterChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        datasets: [{
-            borderColor: 'rgba(54, 162, 235, 0.9)',
-            backgroundColor: 'rgba(54, 162, 235, 0.9)',
-            label: 'Sample Linear Data',
-            data: xyObjectArray,
-            showLine: false
-        }]
-    },
-    options: {
-        scales: {
-            xAxes: [{
-                type: 'linear',
-                position: 'bottom'
-            }]
-        }
-    }
-});
 function addData(dataXYArray) {
     dataset = {
         type: 'line',
@@ -64,17 +68,16 @@ function addData(dataXYArray) {
     scatterChart.data.datasets.push(dataset);
     scatterChart.update();
 }
-const model = tf.sequential();
+
 async function linearTrain() {
-    console.log("linearPredict")
     model.add(tf.layers.dense({ inputShape: [1], units: 1 }));
     model.compile({
         loss: 'meanSquaredError',
         optimizer: 'sgd'
     });
 
-    xArray = xyObjectArray.map(e => e.x);
-    yArray = xyObjectArray.map(e => e.y);
+    xArray = xySampleArray.map(e => e.x);
+    yArray = xySampleArray.map(e => e.y);
 
     document.getElementById("xV").innerText = "sample x: " + xArray;
     document.getElementById("yV").innerText = "sample y: " + yArray;
@@ -86,8 +89,7 @@ async function linearTrain() {
 
 function linearPredict(){
     // PREDICTION PHASE
-    inputXArray = Array.from(Array(xyObjectArray.length).keys())
-    console.log("inputXarray = "+ inputXArray)
+    inputXArray = Array.from(Array(xySampleArray.length).keys())
 
     prediction = model.predict(tf.tensor2d(inputXArray, [inputXArray.length, 1]));
     predictionVal = (prediction.dataSync());
@@ -100,7 +102,7 @@ function linearPredict(){
         }
     }
     console.log(predictedData);
-    addData(predictedData)
+    addData(predictedData);
 
 }
-linearTrain()
+linearTrain();
