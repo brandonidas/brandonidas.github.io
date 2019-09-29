@@ -30,11 +30,14 @@
     <h1 class="display-4">Simple Linear Regression with tensorflow.js</h1>
     <canvas id="myChart1"></canvas>
     <br>
-    <button class="btn btn-danger btn-lg btn-block" style="display: block; margin: 0 auto;" onclick="linearPredict()">Click to Predict</button>
+    <button class="btn btn-primary btn-lg btn-block" style="display: block; margin: 0 auto;" onclick="refitOnceAndPredict()">Click Multiples Times: Train 1 Epoch and Predict</button>
     <br>
-    <button class="btn btn-warning btn-lg btn-block" style="display: block; margin: 0 auto;" onclick="newData()">Generate Data and Retrain</button>
-
+    <button class="btn btn-danger btn-lg btn-block" style="display: block; margin: 0 auto;" onclick="refitHundredAndPredict()">Click Single Time: Train 100 Epochs and Predict</button>
     <br>
+    <button class="btn btn-warning btn-lg btn-block" style="display: block; margin: 0 auto;" onclick="newData()">Generate Data</button>
+    <br>
+    <p id="gradient"></p>
+    <p id="predictedGradient"></p>    
     <p id="xV"></p>
     <p id="yV"></p>
     <p id="demo"></p>
