@@ -1,6 +1,59 @@
+// >>> APPROACH <<<
+//      y = mx
+// create random m on [-5,5]
+// create x-array of ints from 0 to n
+//      y = m(x + d), where d represents entropy
+// create y-array from x-array with an random distortion within some d
+// fold x-array and y-array into a an x-y object array for charting
+// chart via chart.js
+
+function generateData(n = 10) {
+    xs = Array.from(Array(n).keys());
+    ys = [];
+    xys = [];
+    m = Math.round((Math.random() * 10) / 2) * ((Math.random() > 0.5) ? -1 : 1); // [-5,5]
+    d = Math.round((Math.random() * 10) / 5) * ((Math.random() > 0.5) ? -1 : 1); // [-2,2]
+    for (let index = 0; index < n; index++) {
+        ys[index] = m * (xs[index] + d * Math.random());
+    }
+    for (let index = 0; index < n; index++) {
+        xys[index] = {
+            x: xs[index],
+            y: ys[index]
+        }
+    }
+    return {
+        xs: xs,
+        ys: ys,
+        xys: xys,
+    }
+}
+
+// Model SetUp
+function modelSetup(setUpObject) {
+    model = tf.sequential();
+    xs = tf.tensor2d(setUpObject.x, [setUpObject.x.length, 1])
+    ys = tf.tensor2d(setUpObject.y, [setUpObject.y.length, 1])
+    model.add(tf.layers.dense({ inputShape: [1], units: 1 }));
+    model.compile({
+        loss: 'meanSquaredError',
+        optimizer: 'sgd'
+    });
+}
+
+
+
+
+
+
+
+
+
+
 // GLOBAL VARIABLES
 // const model = tf.sequential();
 model = tf.sequential();
+// TODO: create second model for 100 epochs
 
 var xySampleArray = createData();
 xArray = xySampleArray.map(e => e.x);
@@ -17,10 +70,12 @@ var scatterChart = new Chart(ctx, {
     type: 'line',
     data: {
         datasets: [{
+            borderDash: [5, 5],
             borderColor: 'rgba(54, 162, 235, 0.9)',
             backgroundColor: 'rgba(54, 162, 235, 0.9)',
             label: 'Sample Linear Data',
             data: xySampleArray,
+            // fill: false,
             showLine: false
         }]
     },
@@ -109,35 +164,35 @@ async function linearTrain() {
 }
 
 // new function to demonstrate fitting process
-async function refit(n = 1) {
-    await model.fit(xs, ys, { epochs: n });
-}
-
+// TODO: add sequential lines
 async function refitOnceAndPredict() {
     await model.fit(xs, ys, { epochs: 1 });
-    addData(linearPredict(), "blue")
+    linearPredict("blue") 
 }
 
 async function refitHundredAndPredict() {
     await model.fit(xs, ys, { epochs: 100 });
-    addData(linearPredict(), "red")
+    linearPredict()
 }
 
-function linearPredict() {
+// TODO: add opacity
+function linearPredict(colour="red") {
     inputXArray = Array.from(Array(xySampleArray.length).keys())
     prediction = model.predict(tf.tensor2d(inputXArray, [inputXArray.length, 1]));
-    predictionVal = (prediction.dataSync());
-    // document.getElementById("demo").innerText = "predicted-y: " + predictionVal;
-    predictedData = Array(inputXArray.length);
-    for (let index = 0; index < predictedData.length; index++) {
-        predictedData[index] = {
-            x: inputXArray[index],
-            y: predictionVal[index]
+    predictionVal = (prediction.data());
+    predictionVal.then((message) => {
+        // document.getElementById("demo").innerText = "predicted-y: " + predictionVal;
+        predictedData = Array(inputXArray.length);
+        for (let index = 0; index < predictedData.length; index++) {
+            predictedData[index] = {
+                x: inputXArray[index],
+                y: message[index]
+            }
         }
-    }
-    console.log(predictedData);
-    document.getElementById("predictedGradient").innerText = "predicted: "
-        + ((predictedData[9].y - predictedData[0].y) / 10);
-    return predictedData;
+        console.log(predictedData);
+        document.getElementById("predictedGradient").innerText = "predicted: "
+            + Math.round(((predictedData[9].y - predictedData[0].y))) / 10;
+        addData(predictedData, colour);
+    })
 }
 linearTrain();
