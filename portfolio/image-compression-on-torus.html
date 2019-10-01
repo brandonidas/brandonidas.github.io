@@ -36,6 +36,7 @@
       This process is done recursively until the quadrant, now leaf,
       is just \(1 * 1 \) - ie a single pixel. The root is the entire image and
       each child is a quadrant of that its parent.</p>
+      <img class="img-fluid rounded mx-auto d-block" src="quadtree.png" alt="">
     <p>The point at which the node is divided is at an optimal splitting point as described below.</p>
     <h3>Minimum Entropy Point</h3>
     <p>Now we find a leaf on each quadrant where, if filled by that colour-average,
@@ -119,6 +120,7 @@
     </table>
     <br>
     <h3>Wrapping Sections ("Torus"-ing)</h3>
+    <img class="img-fluid rounded mx-auto d-block" src="wrapping.png" alt="">
     <p>Minimising the entropy necessitated sometimes wrapping a quadrant from
       one edge to another. // TODO create image to illustrate this </p>
     <h3>Pruning</h3>
