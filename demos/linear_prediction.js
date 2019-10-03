@@ -175,7 +175,7 @@ async function refitHundredAndPredict() {
     linearPredict()
 }
 
-// TODO: add opacity
+// TODO: add incremental opacity
 function linearPredict(colour="red") {
     inputXArray = Array.from(Array(xySampleArray.length).keys())
     prediction = model.predict(tf.tensor2d(inputXArray, [inputXArray.length, 1]));
@@ -191,7 +191,7 @@ function linearPredict(colour="red") {
         }
         console.log(predictedData);
         document.getElementById("predictedGradient").innerText = "predicted: "
-            + Math.round(((predictedData[9].y - predictedData[0].y))) / 10;
+            + Math.round(((predictedData[predictedData.length-1].y - predictedData[0].y))) / predictedData.length;
         addData(predictedData, colour);
     })
 }
