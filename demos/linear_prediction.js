@@ -35,6 +35,7 @@ function modelSetup(setUpObject) {
     xs = tf.tensor2d(setUpObject.x, [setUpObject.x.length, 1])
     ys = tf.tensor2d(setUpObject.y, [setUpObject.y.length, 1])
     model.add(tf.layers.dense({ inputShape: [1], units: 1 }));
+    model.add(tf.layers.dense({units: 50, activation: 'sigmoid'}));
     model.compile({
         loss: 'meanSquaredError',
         optimizer: 'sgd'
