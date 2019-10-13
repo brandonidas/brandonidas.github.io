@@ -25,25 +25,27 @@
     </div>
   </div>
   <br>
-
-  <div class="container ">
-    <h1 class="display-4">Simple Linear Regression with tensorflow.js</h1>
-    <canvas id="myChart1"></canvas>
-    <br>
-    <button class="btn btn-primary btn-lg btn-block" style="display: block; margin: 0 auto;" id="predic" onclick="refitOnceAndPredict()">Click Multiples Times: Train 1 Epoch and Predict</button>
-    <br>
-    <!-- <button class="btn btn-danger btn-lg btn-block" style="display: block; margin: 0 auto;" onclick="refitHundredAndPredict()">Click Single Time: Train 100 Epochs and Predict</button>
-    <br> -->
-    <button class="btn btn-warning btn-lg btn-block" style="display: block; margin: 0 auto;" onclick="newData()">Generate Data</button>
-    <br>
-    <p id="gradient"></p>
-    <p id="predictedGradient"></p>
-    <div class="col-6">
-        <canvas id="myChart2"></canvas>
-    </div>
-    <p id="xV"></p>
-    <p id="yV"></p>
-    <p id="demo"></p>
+  <div class="container">
+  <div class="container">
+    <div class="row">
+      <h1 class="display-4">Simple Linear Regression with tensorflow.js</h1>
+      <div class="col-9">
+        <canvas id="myChart1"></canvas>
+      </div>
+      <div class="col-3">
+          <canvas id="myChart2"></canvas>
+          <button class="btn btn-primary btn-sm btn-block" style="display: block; margin: 0 auto;" id="predic" onclick="refitOnceAndPredict()">Click Multiples Times: Train 1 Epoch and Predict</button>
+          <!-- <button class="btn btn-danger btn-lg btn-block" style="display: block; margin: 0 auto;" onclick="refitHundredAndPredict()">Click Single Time: Train 100 Epochs and Predict</button>
+          <br> -->
+          <button class="btn btn-warning btn-sm btn-block" style="display: block; margin: 0 auto;" onclick="newData()">Generate Data</button>
+          <p id="gradient"></p>
+          <p id="predictedGradient"></p>
+      </div>
+      </div>
+  </div>
+  <p id="xV"></p>
+  <p id="yV"></p>
+  <p id="demo"></p>
     <p>I drank too much coffee and watched this <a href="https://www.youtube.com/watch?v=pbCExciEbrc">tutorial</a>. Shout out to the people
     at google for making such awesome tools and then making resources for people like me to learn from!</p>
     <h3>Analysis</h3>
@@ -58,10 +60,12 @@
     <h3>TODO</h3>
     <p>Progression line chart for the incremental increases in accuracy of the model. Probably will look logarithmic.</p>
     <p>Change blue button to add 1 line every .5 seconds for 5 seconds.</p>
+    <p>Refactor js script like the tfjs tutorial so it looks cleaner and has best practices</p>
   </div>
   <br>
   <br>
   <br>
+    </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
 
