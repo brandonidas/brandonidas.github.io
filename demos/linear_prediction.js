@@ -43,16 +43,14 @@ function modelSetup(setUpObject) {
 
 
 
-
-
-
-
-
-
-
 // GLOBAL VARIABLES
 // const model = tf.sequential();
 model = tf.sequential();
+
+lineCounter = 0;
+accuracyHistory = [];
+gradient = 0;
+
 // TODO: create second model for 100 epochs
 
 var xySampleArray = createData();
@@ -75,8 +73,30 @@ var scatterChart = new Chart(ctx, {
             backgroundColor: 'rgba(54, 162, 235, 0.9)',
             label: 'Sample Linear Data',
             data: xySampleArray,
-            // fill: false,
             showLine: false
+        }]
+    },
+    options: {
+        scales: {
+            xAxes: [{
+                type: 'linear',
+                position: 'bottom'
+            }]
+        }
+    }
+});
+
+var ctx2 = document.getElementById('myChart2').getContext('2d');
+var lineChart = new Chart(ctx2, {
+    type: 'line',
+    data: {
+        datasets: [{
+            borderDash: [5, 5],
+            borderColor: 'rgba(54, 162, 235, 0.9)',
+            backgroundColor: 'rgba(54, 162, 235, 0.9)',
+            label: 'Accuracy over Epochs',
+            data: accuracyHistory,
+            showLine: true
         }]
     },
     options: {
@@ -96,6 +116,7 @@ var scatterChart = new Chart(ctx, {
 function createData(m = 1, r = 2.3, n = 10) {
     a = (1 + Math.round(Math.random() * 10) / 2) * ((Math.random() > 0.5) ? -1 : 1); // [-6,6]
     document.getElementById("gradient").innerText = "gradient: " + a;
+    gradient = a;
     ret = [];
     for (i = 0; i < n; i++) {
         yEntropy = r * ((Math.random() > 0.5) ? - Math.random() : Math.random())
@@ -127,13 +148,14 @@ function newData() {
     ys = tf.tensor2d(yArray, [yArray.length, 1])
     linearTrain();
     scatterChart.update();
+    lineCounter = 0;
 }
 
 function addData(dataXYArray, color = "red") {
     dataset = {
         type: 'line',
         fill: true,
-        borderWidth: 2,
+        borderWidth: 3,
         borderColor: color,
         backgroundColor: color,
         label: 'Predicted Data',
@@ -151,23 +173,13 @@ async function linearTrain() {
         loss: 'meanSquaredError',
         optimizer: 'sgd'
     });
-
-    // xArray = xySampleArray.map(e => e.x);
-    // yArray = xySampleArray.map(e => e.y);
-
-    // document.getElementById("xV").innerText = "sample x: " + xArray;
-    // document.getElementById("yV").innerText = "sample y: " + yArray;
-
-    // const xs = tf.tensor2d(xArray, [xArray.length, 1])
-    // const ys = tf.tensor2d(yArray, [yArray.length, 1])
-    // await model.fit(xs, ys, { epochs: 1 });
 }
 
 // new function to demonstrate fitting process
-// TODO: add sequential lines
 async function refitOnceAndPredict() {
     await model.fit(xs, ys, { epochs: 1 });
-    linearPredict("blue") 
+    linearPredict('rgba(54, 162, 235,' + (0.1 + 0.1 * lineCounter) + ')', 'Predicted Data ' + (lineCounter + 1))
+    lineCounter++
 }
 
 async function refitHundredAndPredict() {
@@ -175,8 +187,8 @@ async function refitHundredAndPredict() {
     linearPredict()
 }
 
-// TODO: add opacity
-function linearPredict(colour="red") {
+// TODO: add incremental opacity
+function linearPredict(colour = "red", name = "Predicted Data") {
     inputXArray = Array.from(Array(xySampleArray.length).keys())
     prediction = model.predict(tf.tensor2d(inputXArray, [inputXArray.length, 1]));
     predictionVal = (prediction.data());
@@ -190,9 +202,15 @@ function linearPredict(colour="red") {
             }
         }
         console.log(predictedData);
-        document.getElementById("predictedGradient").innerText = "predicted: "
-            + Math.round(((predictedData[9].y - predictedData[0].y))) / 10;
-        addData(predictedData, colour);
+        accuracy = Math.round(((predictedData[predictedData.length - 1].y - predictedData[0].y))) / predictedData.length;
+        accuracyHistory.push(
+            {
+                x: (accuracyHistory.length + 1),
+                y: accuracy/gradient
+            });
+        document.getElementById("predictedGradient").innerText = "predicted: " + accuracy;
+        addData(predictedData, colour, name);
+        lineChart.update();
     })
 }
 linearTrain();

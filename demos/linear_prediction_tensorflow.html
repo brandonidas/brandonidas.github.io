@@ -30,27 +30,34 @@
     <h1 class="display-4">Simple Linear Regression with tensorflow.js</h1>
     <canvas id="myChart1"></canvas>
     <br>
-    <button class="btn btn-primary btn-lg btn-block" style="display: block; margin: 0 auto;" onclick="refitOnceAndPredict()">Click Multiples Times: Train 1 Epoch and Predict</button>
+    <button class="btn btn-primary btn-lg btn-block" style="display: block; margin: 0 auto;" id="predic" onclick="refitOnceAndPredict()">Click Multiples Times: Train 1 Epoch and Predict</button>
     <br>
-    <button class="btn btn-danger btn-lg btn-block" style="display: block; margin: 0 auto;" onclick="refitHundredAndPredict()">Click Single Time: Train 100 Epochs and Predict</button>
-    <br>
+    <!-- <button class="btn btn-danger btn-lg btn-block" style="display: block; margin: 0 auto;" onclick="refitHundredAndPredict()">Click Single Time: Train 100 Epochs and Predict</button>
+    <br> -->
     <button class="btn btn-warning btn-lg btn-block" style="display: block; margin: 0 auto;" onclick="newData()">Generate Data</button>
     <br>
     <p id="gradient"></p>
-    <p id="predictedGradient"></p>    
+    <p id="predictedGradient"></p>
+    <div class="col-6">
+        <canvas id="myChart2"></canvas>
+    </div>
     <p id="xV"></p>
     <p id="yV"></p>
     <p id="demo"></p>
     <p>I drank too much coffee and watched this <a href="https://www.youtube.com/watch?v=pbCExciEbrc">tutorial</a>. Shout out to the people
     at google for making such awesome tools and then making resources for people like me to learn from!</p>
     <h3>Analysis</h3>
-    <p>This was very simple. The data was generated from a simple y = x formula, then the y-values were given a random additive on [-2.3,2.3].
+    <p>
+      This was very simple. The data was generated from a simple y = x formula, then the y-values were given a random additive on [-2.3,2.3].
       Then the model fit a 2D sample matrix over ~100 epochs. A prediction vector was extracted from the model along the original x-values and then
       rendered as a line via chart.js.
     </p>
-    <p>Errors were present, given the small sample size, there were sizable deviations from the y=x line.
+    <p>
+      Errors were present, given the small sample size, there were sizable deviations from the y=x line.
     </p>
-    <p>Errata: After about a dozen or so call to newData() and linearPredict(), the regression line becomes y = 4.54.. or some other constant. Refreshing the page seems to resolve the issue.</p>
+    <h3>TODO</h3>
+    <p>Progression line chart for the incremental increases in accuracy of the model. Probably will look logarithmic.</p>
+    <p>Change blue button to add 1 line every .5 seconds for 5 seconds.</p>
   </div>
   <br>
   <br>
