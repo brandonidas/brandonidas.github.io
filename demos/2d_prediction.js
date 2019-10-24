@@ -65,17 +65,6 @@ function createModel() {
   // Hidden later
   model.add(tf.layers.dense({units: 50, activation: 'relu'}));
   model.add(tf.layers.dense({units: 50, activation: 'relu'}));
-  // model.add(tf.layers.dense({units: 25, activation: 'relu'}));
-  // model.add(tf.layers.dense({units: 25, activation: 'relu'}));
-  // 4 layers at 50, curve present
-  // 4 layers at 25, curve present
-  // 4 layers at 15, curve absent, line also did not predict at all, approc y = c,
-  // 3 layers at 25, curve present <<<< OPTIMUM, but tail missing compared to 4 layers
-  // 2 layers at 25, curve significantly reduced
-  // SWITCHED TO RELU ACTIVATION, cut layers from 4 to 1, achieves same result with only 15 nodes in single later
-  // 25 nodes yields a much more feature-rich result
-  // need to figure out the mathematics of this
-
   // single layer relu seems to randomly return a linear fit
   // doubling for redundancy? Perhaps the non-symmetric nature of relu demands more epochs?
   
