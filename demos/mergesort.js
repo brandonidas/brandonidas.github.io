@@ -1,10 +1,9 @@
 steps = 0;
 
-
 function generateArray(n = 10, range = 10) {
     ret = [];
     for(i = 0; i < n; i++) {
-        ret[i] = Math.floor(Math.random() * 10);
+        ret.push(Math.floor(Math.random() * range));
     }
     return ret;
 }
@@ -14,7 +13,7 @@ function mergeSort(arr){
     if(len < 2) {
         return arr;
     }
-    //divide
+    // divide
     // NOTE: the 'const' keyword is necessary due to pass-by-value for primitives in JS
     const mid = Math.floor(len/2)
     const l = arr.splice(0, mid);
@@ -53,7 +52,7 @@ function run(){
     arr = generateArray();
     document.getElementById("sample").innerText = "sample x: " + arr;
     sorted = mergeSort(arr);
-    document.getElementById("sorted").innerText = "sample x: " + sorted;
+    document.getElementById("sorted").innerText = "sorted x: " + sorted;
     console.log("steps:" + steps)
 }
 
