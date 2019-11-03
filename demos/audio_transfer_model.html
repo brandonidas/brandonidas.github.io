@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/@tensorflow/tfjs"></script>
+    <script src="https://unpkg.com/@tensorflow-models/speech-commands"></script>
+  </head>
+  <body>
+      <p>Domain: "left", "right", "up", "down", 0-9, "yes", "no", "stop", "go", </p>
+      <p>Say something!</p>
+    You: <div id="console"></div>
+    <script src="audio_transfer_model.js"></script>
+    <br>
+    <br>
+    TODO: allow user to repeat x 10 some word with a label, generate more samples from it
+    using some distortion technique and then get the model to train on that data
+  </body>
+</html>
