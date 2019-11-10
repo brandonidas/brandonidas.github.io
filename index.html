@@ -8,6 +8,14 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="shortcut icon" href="favicon.ico">
   <title>BT</title>
+  <style>
+    #chart-row {
+      background-color: white
+    }
+    body {
+      background-color: whitesmoke
+    }
+  </style>
 </head>
 
 <body>
@@ -16,14 +24,14 @@
     <a class="btn btn-info" href="https://github.com/brandonidas">GitHub</a> &nbsp
     <a class="btn btn-info" href="https://www.linkedin.com/in/brandon-tong-875bba88/">LinkedIn</a> &nbsp
     <a class="btn btn-warning" href="./blog/index.html">Blog</a>
-    &nbsp &nbsp &nbsp <small><i>Site not yet mobile-optimised</i></small>
+    &nbsp &nbsp &nbsp <a class="navbar-brand" href="#"><i>Site not yet mobile-optimised</i></a>
   </nav>
   <br>
   <div class="container-fluid">
     <div class="row">
       <h2 class="display-4">Charting Brandon Tong</h2>
     </div>
-    <div class="row">
+    <div id = "chart-row" class="row">
       <div class="col-4" style="display: inline-block; vertical-align:top;border: 1px solid black;">
         <canvas id="myChart2"></canvas>
         Fig. 1. <a href="https://www.researchgate.net/figure/46_tbl1_280008475">See this.</a>
@@ -70,7 +78,12 @@
                     </details>
                   </a>
                   <a class="list-group-item list-group-item-action list-group-item-success">
-                    Teaching Assistant: 100/200 level computer science.
+                    <details>
+                        <summary>TA for 100/200 level computer science</summary>
+                        <br><b>Curriculum</b>
+                        <br> CPSC 210: Softare Construction x 1 term
+                        <br> CPSC 110: Systematic Program Design x 3 terms
+                    </details>
                   </a>
                   <a class="list-group-item list-group-item-action list-group-item-danger">
                     Former Medical Corps, Psychiatrics (Singapore)
@@ -128,7 +141,7 @@
         <div class="card border-info">
           <img class="card-img-top" src="smokers.jpg" alt="Card image cap">
           <div class="card-body">
-            Smokers and Dining Philosophers Synchronisation, in C using semaphores,
+            Smokers and Dining Philosophers Synchronisation, in C using condition variables and mutexes,
             for CPSC 213 coursework.
           </div>
         </div>
