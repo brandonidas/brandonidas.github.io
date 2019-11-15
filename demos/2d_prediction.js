@@ -62,15 +62,11 @@ function createModel() {
   // Add a single hidden layer
   model.add(tf.layers.dense({ inputShape: [1], units: 1, useBias: true }));
 
-  // Hidden later
+  // Hidden layers
   model.add(tf.layers.dense({units: 50, activation: 'relu'}));
   model.add(tf.layers.dense({units: 50, activation: 'relu'}));
   // single layer relu seems to randomly return a linear fit
   // doubling for redundancy? Perhaps the non-symmetric nature of relu demands more epochs?
-  
-
-
-
   // Add an output layer
   model.add(tf.layers.dense({ units: 1, useBias: true }));
 
