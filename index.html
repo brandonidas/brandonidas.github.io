@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="shortcut icon" href="favicon.ico">
+  <title>BT</title>
+  <style>
+    #chart-row {
+      background-color: white
+    }
+
+    body {
+      background-color: whitesmoke
+    }
+  </style>
+</head>
+
+<body>
+  <div class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <a class="navbar-brand" href="#">BRANDON TONG</a>
+    <a class="btn btn-info" href="https://github.com/brandonidas">GitHub</a> &nbsp
+    <a class="btn btn-info" href="https://www.linkedin.com/in/brandon-tong-875bba88/">LinkedIn</a> &nbsp
+    <a class="btn btn-warning" href="./blog/index.html">Blog</a>
+    &nbsp
+    &nbsp
+    &nbsp
+    <a class="navbar-brand" href="#"><i>Site not yet mobile-optimised</i></a>
+  </div>
+  <br>
+  <div class="container-fluid">
+    <div class="row">
+      <h3 class="display-4">Charting Brandon Tong</h3>
+    </div>
+    <div id="chart-row" class="row">
+      <div class="col-md" style="display: inline-block; vertical-align:top;border: 1px solid black;">
+        <canvas id="myChart2"></canvas>
+        Fig. 1. <a href="https://www.researchgate.net/figure/46_tbl1_280008475">See this.</a>
+      </div>
+      <div class="col-md" style="display: inline-block; vertical-align:top;border: 1px solid black;">
+        <canvas id="myChart3"></canvas>
+        Fig. 2
+      </div>
+      <div class="col-md" style="display: inline-block; vertical-align:top;border: 1px solid black;">
+        <canvas id="myChart1"></canvas>
+        Fig. 3
+      </div>
+    </div>
+    <p><small>^ This also serves as my sneaky demonstration of data visualisation.</small></p>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 lead card">
+        <h2 class="display-4">Let me introduce myself!</h2>
+        <p>I'm a Computer Science undergraduate at the University of British Columbia.
+          I TA for Computer Science 110 (Systematic Program Design)
+          and 210 (Software Construction with Java) and 221 (Intro. Data Structures and Algorithms) - and love it! (See fig.2, fig.3)
+          I enjoy puzzles and thinking through proofs - which drew me to Computer Science.</p>
+        <p>Lately, I've been thinking about the *domain* of the puzzles I want to solve in my lifetime,
+          which has led to start thinking about a second major in a Life Science.
+          Pharmacology? Biochemistry? Proteomics? They all seem so ripe with complexity
+          and ready to be computationally reaped!</p>
+        <p>I'm a very proud former member of the Military Medicine Institute (Singapore).
+          I did not think much of myself prior to my time there and I have my commanders to thank for
+          uncovering a lot of the better parts of who I am today. (See fig.2)</p>
+      </div>
+      <div class="col-sm-3 card">
+        <div class="list-group">
+          <br>
+          <a class="list-group-item list-group-item-action">
+            <h3>Quick Facts</h3>
+          </a>
+          <a class="list-group-item list-group-item-action list-group-item-primary">
+            <details>
+              <summary>BSc. Computer Science, 3rd year, (A) Average</summary>
+              <br><b>Key Courses</b>
+              <br>(A) CPSC 221: Data Structures and Algorithms
+              <br>(A-) CPSC 213: Intro. Computer Systems
+              <br>(A) CPSC 210: Software Construction
+              <br>(A+) CPSC 110: Systematic Program Design
+              <br>(A+) STAT 200: Elementary Statistics
+            </details>
+          </a>
+          <a class="list-group-item list-group-item-action list-group-item-success">
+            <details>
+              <summary>TA for 100/200 level computer science</summary>
+              <br><b>Curriculum</b>
+              <br> CPSC 221: Intro. Data Structures and Algorithms x 1 term
+              <br> CPSC 210: Software Construction x 2 term
+              <br> CPSC 110: Systematic Program Design x 3 terms
+            </details>
+          </a>
+          <a class="list-group-item list-group-item-action list-group-item-danger">
+            Former Medical Corps, Psychiatrics (Singapore)
+          </a>
+          <a class="list-group-item list-group-item-action list-group-item-info">
+            M.E.A.N.js, Java/Scala, Python, C/C++, SQL, Mongo
+          </a>
+          <a href="#Portfolio" class="list-group-item list-group-item-action list-group-item-info">
+            Personal Projects
+          </a>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="container card card-body">
+    <h2>Portfolio</h2>
+    <p>(I'm still working on some of the pages)</p>
+    <div class="row" id="Portfolio">
+      <div class="col-sm">
+        <div class="card border-info">
+          <img class="card-img-top" src="bus-squared.png" alt="Card image cap">
+          <div class="card-body">
+            Buses 'R' Us, Bus Android App, for CPSC 210 coursework
+            <details>
+              <summary>Not a lot can be said about this one...</summary>
+              <p><i>The code was not allowed to be published as the project
+                  was reused. </i></p>
+              <p> Nonetheless I can say that I used a public transit API to retrieve both the timings and variable
+                routes of buses in British Columbia (yes bus routes in BC change seasonally especially around UBC). Then
+                mapped
+                these onto an a street map of the area.
+              </p>
+              <p>It was meant an introduction to indsutry work (via a real world API and app), Object Oriented
+                Programming
+                and Design Patterns (Observer, Composite and Iterator).</p>
+              <p>I'm using a details-summary card because I feel a web page would've been overkill.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm">
+        <a href="./portfolio/image-compression-on-torus.html">
+          <div class="card border-info">
+            <img class="card-img-top" src="bus-compressed.png" alt="Card image cap">
+            <div class="card-body">
+              Image Compression on a Torus, in C++, for CPSC 221 coursework
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-sm">
+        <div class="card border-info">
+          <img class="card-img-top" src="smokers.jpg" alt="Card image cap">
+          <div class="card-body">
+            Smokers and Dining Philosophers Synchronisation, in C using condition variables and mutexes,
+            for CPSC 213 coursework.
+            <br>
+            <i>TODO: Web demo via WEBASSEMBLY</i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm">
+        <div class="card border-info mb-3">
+          <img class="card-img-top" src="ocr.png" alt="Card image cap">
+          <div class="card-body">
+            "0"-"9" Optical Character Recognition
+            First done in Octave, Machine Learning, 2017 (Coursera, Andrew Ng)
+            2019 with
+            <a href="./demos/cnn_ocr.html">tf.js and a convolutional neural network</a>
+            (I still need to find the time to mark up this one)
+          </div>
+        </div>
+      </div>
+      <div class="col-sm">
+        <a href="./portfolio/choiciture.html">
+          <div class="card border-info mb-3">
+            <img class="card-img-top" src="choiciture.png" alt="Card image cap">
+            <div class="card-body">
+              Choiciture - Instagam-like app. Full Stack Javascript (M.E.A.N js)
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-sm">
+        <div class="card border-info mb-3">
+          <a href="./demos/linear_prediction_tensorflow.html">
+            <img class="card-img-top" src="tfjs.png" alt="Card image cap">
+          </a>
+          <div class="card-body">
+            <a href="./demos/linear_prediction_tensorflow.html">
+              A Simple Linear Regression from semi-random Data in tf.js
+            </a>
+            <br>
+            <a href="./demos/2d_prediction.html">
+              A Simple Non-Linear Regression from API data in tf.js
+            </a>
+            <details>
+              <summary>More tf.js to come...</summary>
+              I initially did this because I drank too much coffee one evening. But looking at it, this web demo is much
+              more presentable than
+              just a repo.
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <p>Except for the demos, I don't consider this website a part of my portfolio
+        because of its bare-bones nature. But it is made from raw HTML and Bootstrap with several Javascript libraries
+        such as chart.js. The inspiration for this page was a medical textbook - clean, clinical,
+        lined with highlights and bright sticky bookmarks.</p>
+    </div>
+  </div>
+  <br>
+
+  <div class="container card card-body">
+    <h2>Articles</h2>
+    <p> <a href="https://www.linkedin.com/pulse/we-dont-fight-dragons-anymore-brandon-tong"> 
+      We Don't Fight Dragons Anymore (Myth Making For the Information Age)
+    </a>
+    This is a test-article for a series, with working title "Myth Making for the Information Age", 
+    where I attempt to form a symbolic narrative from my experiences to cultivate meaning in an increasingly nihilistic world. 
+    </p>
+    <p> <a href="./blog/first-goog-chal.html">My First Code Challenge</a> </p>
+    <p> <a href="https://www.linkedin.com/pulse/statistics-data-science-next-computer-brandon-tong/?published=t"> 
+      Is Statistics (for Data Science) the next Computer Science? (Linkedin)
+    </a> 
+    </p>
+  </div>
+  <br><br><br>
+  <p class="footer container">Brandon Tong © 2019</p>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+<script src="chartIndex.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</html>
