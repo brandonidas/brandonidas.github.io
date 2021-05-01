@@ -1,4 +1,6 @@
 import * as React from "react"
+import Header from "../components/header"
+import TinyHeader from "../components/tiny-header"
 
 // styles
 const pageStyles = {
@@ -34,20 +36,17 @@ const listItemStyles = {
   maxWidth: 560,
   marginBottom: 30,
 }
-
 const linkStyle = {
   color: "#8954A8",
   fontWeight: "bold",
   fontSize: 16,
   verticalAlign: "5%",
 }
-
 const docLinkStyle = {
   ...linkStyle,
   listStyleType: "none",
   marginBottom: 24,
 }
-
 const descriptionStyle = {
   color: "#232129",
   fontSize: 14,
@@ -55,13 +54,11 @@ const descriptionStyle = {
   marginBottom: 0,
   lineHeight: 1.25,
 }
-
 const docLink = {
   text: "Documentation",
   url: "https://www.gatsbyjs.com/docs/",
   color: "#8954A8",
 }
-
 const badgeStyle = {
   color: "#fff",
   backgroundColor: "#088413",
@@ -129,10 +126,13 @@ const links = [
 const IndexPage = () => {
   return (
     <main style={pageStyles}>
+      <TinyHeader/>
+      <Header headerText="Test header text Gatsby"/>
       <title>Brandon Tong</title>
       <h1 style={headingStyles}>
         THIS SITE IS CURRENTLY UNDER CONSTRUCTION
         <br></br>
+        <Header />
         <br></br>
         Hi I'm Brandon :)
         <br />
@@ -183,5 +183,6 @@ const IndexPage = () => {
     </main>
   )
 }
+
 
 export default IndexPage

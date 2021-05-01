@@ -1,0 +1,28 @@
+Tiny half-nav bar
+
+"Hi I'm Brandon"
+
+2-paragraph intro with 4.0 and internship
+"I am a 3rd Computer Science and Statistics double major at the University of British Columbia....
+Former medical corps."
+
+------------------------------------
+im Brandon  | 4.0       | ex-zalora           
+            | key CPSC  | medical corps 
+            |           | UBC TA
+------------------------------------
+
+
+Work Experience (Create component)
+    ZALORA internship
+
+    TA Experience
+
+    Military Service
+
+Projects (Create component)
+    ...
+    ...
+    ...
+
+LinkedIn and stuff
