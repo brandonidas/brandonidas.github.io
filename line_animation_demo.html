@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<style>
+    #myContainer {
+        height: 10px;
+    }
+
+    #line {
+        width: 5px;
+        height: 1px;
+        position: absolute;
+        background-color: black;
+    }
+</style>
+
+<body>
+
+    <!-- <p>
+        <button onclick="myMove()">Click Me</button>
+    </p> -->
+        <div id="line"></div>
+
+    <script>
+        var id = null;
+        function lineByIDAndLength(id,length) {
+            var elem = document.getElementById(id);
+            var pos = 0;
+            clearInterval(id);
+            id = setInterval(frame, 1);
+            function frame() {
+                if (pos > length ) { // find way to see view port
+                    clearInterval(id);
+                } else {
+                    pos++;
+                    elem.style.width = pos + 'px';
+                }
+            }
+        }
+
+        document.body.onload = function () {
+            lineByIDAndLength("line",1000);
+        }
+    </script>
+
+</body>
+
+</html>

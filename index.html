@@ -1,239 +1,399 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
+<style>
+  body {
+    font-size: 30px;
+  }
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="shortcut icon" href="favicon.ico">
-  <title>BT</title>
-  <style>
-    #chart-row {
-      background-color: white
-    }
+  a {
+    color: black;
+  }
 
-    body {
-      background-color: whitesmoke
+  .tiny_text {
+    font-size: 10px;
+  }
+
+  .small_text {
+    font-size: 15px;
+  }
+
+  .big_text {
+    font-family: 'Andale Mono', 'Courier New', monospace;
+    font-size: min(12vw, 75px);
+  }
+
+  div {
+    font-family: Cochin, Cambria, Georgia, Times, 'Times New Roman', serif, sans-serif;
+  }
+
+  .landing {
+    margin: auto;
+    width: 75%;
+    height: 150px;
+  }
+
+  .card_center {
+    margin: auto;
+    width: 75%;
+    max-width: 750px;
+    border: 1px solid black;
+    padding: 10px;
+  }
+
+  .center {
+    margin: auto;
+    width: 75%;
+    max-width: 750px;
+    padding: 10px;
+  }
+
+  .maxed {
+    max-width: 750px;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .blink_me {
+    animation: blinker 1s linear infinite;
+  }
+
+  .blink_me_on_off {
+    animation: blinker 0.5s step-start infinite;
+  }
+
+  a:hover {
+    background-color: black;
+    color: white;
+  }
+
+  @keyframes blinker {
+    10% {
+      opacity: 0;
     }
-  </style>
-</head>
+  }
+
+  .line {
+    width: 5px;
+    height: 1px;
+    position: absolute;
+    background-color: green;
+  }
+
+  #line {
+    width: 1px;
+    height: 2px;
+    position: absolute;
+    background-color: black;
+  }
+</style>
+<style>
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 17px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 13px;
+    width: 13px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked+.slider {
+    background-color: black;
+  }
+
+  input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+
+  input:checked+.slider:before {
+    -webkit-transform: translateX(13px);
+    -ms-transform: translateX(13px);
+    transform: translateX(13px);
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+</style>
 
 <body>
-  <div class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-    <a class="navbar-brand" href="#">BRANDON TONG</a>
-    <a class="btn btn-info" href="https://github.com/brandonidas">GitHub</a> &nbsp
-    <a class="btn btn-info" href="https://www.linkedin.com/in/brandon-tong-875bba88/">LinkedIn</a> &nbsp
-    <a class="btn btn-warning" href="./blog/index.html">Blog</a>
-    &nbsp
-    &nbsp
-    &nbsp
-    <a class="navbar-brand" href="#"><i>Site not yet mobile-optimised</i></a>
-  </div>
+
   <br>
-  <div class="container-fluid">
-    <div class="row">
-      <h3 class="display-4">Charting Brandon Tong</h3>
-    </div>
-    <div id="chart-row" class="row">
-      <div class="col-md" style="display: inline-block; vertical-align:top;border: 1px solid black;">
-        <canvas id="myChart2"></canvas>
-        Fig. 1. <a href="https://www.researchgate.net/figure/46_tbl1_280008475">See this.</a>
-      </div>
-      <div class="col-md" style="display: inline-block; vertical-align:top;border: 1px solid black;">
-        <canvas id="myChart3"></canvas>
-        Fig. 2
-      </div>
-      <div class="col-md" style="display: inline-block; vertical-align:top;border: 1px solid black;">
-        <canvas id="myChart1"></canvas>
-        Fig. 3
-      </div>
-    </div>
-    <p><small>^ This also serves as my sneaky demonstration of data visualisation.</small></p>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-9 lead card">
-        <h2 class="display-4">Let me introduce myself!</h2>
-        <p>I'm a Computer Science undergraduate at the University of British Columbia.
-          I TA for Computer Science 110 (Systematic Program Design)
-          and 210 (Software Construction with Java) and 221 (Intro. Data Structures and Algorithms) - and love it! (See fig.2, fig.3)
-          I enjoy puzzles and thinking through proofs - which drew me to Computer Science.</p>
-        <p>Lately, I've been thinking about the *domain* of the puzzles I want to solve in my lifetime,
-          which has led to start thinking about a second major in a Life Science.
-          Pharmacology? Biochemistry? Proteomics? They all seem so ripe with complexity
-          and ready to be computationally reaped!</p>
-        <p>I'm a very proud former member of the Military Medicine Institute (Singapore).
-          I did not think much of myself prior to my time there and I have my commanders to thank for
-          uncovering a lot of the better parts of who I am today. (See fig.2)</p>
-      </div>
-      <div class="col-sm-3 card">
-        <div class="list-group">
-          <br>
-          <a class="list-group-item list-group-item-action">
-            <h3>Quick Facts</h3>
-          </a>
-          <a class="list-group-item list-group-item-action list-group-item-primary">
-            <details>
-              <summary>BSc. Computer Science, 3rd year, (A) Average</summary>
-              <br><b>Key Courses</b>
-              <br>(A) CPSC 221: Data Structures and Algorithms
-              <br>(A-) CPSC 213: Intro. Computer Systems
-              <br>(A) CPSC 210: Software Construction
-              <br>(A+) CPSC 110: Systematic Program Design
-              <br>(A+) STAT 200: Elementary Statistics
-            </details>
-          </a>
-          <a class="list-group-item list-group-item-action list-group-item-success">
-            <details>
-              <summary>TA for 100/200 level computer science</summary>
-              <br><b>Curriculum</b>
-              <br> CPSC 221: Intro. Data Structures and Algorithms x 1 term
-              <br> CPSC 210: Software Construction x 2 term
-              <br> CPSC 110: Systematic Program Design x 3 terms
-            </details>
-          </a>
-          <a class="list-group-item list-group-item-action list-group-item-danger">
-            Former Medical Corps, Psychiatrics (Singapore)
-          </a>
-          <a class="list-group-item list-group-item-action list-group-item-info">
-            M.E.A.N.js, Java/Scala, Python, C/C++, SQL, Mongo
-          </a>
-          <a href="#Portfolio" class="list-group-item list-group-item-action list-group-item-info">
-            Personal Projects
-          </a>
-        </div>
-        <br>
-      </div>
-    </div>
-  </div>
+  <div id="demo" class="center big_text"></div>
   <br>
-  <div class="container card card-body">
-    <h2>Portfolio</h2>
-    <p>(I'm still working on some of the pages)</p>
-    <div class="row" id="Portfolio">
-      <div class="col-sm">
-        <div class="card border-info">
-          <img class="card-img-top" src="bus-squared.png" alt="Card image cap">
-          <div class="card-body">
-            Buses 'R' Us, Bus Android App, for CPSC 210 coursework
-            <details>
-              <summary>Not a lot can be said about this one...</summary>
-              <p><i>The code was not allowed to be published as the project
-                  was reused. </i></p>
-              <p> Nonetheless I can say that I used a public transit API to retrieve both the timings and variable
-                routes of buses in British Columbia (yes bus routes in BC change seasonally especially around UBC). Then
-                mapped
-                these onto an a street map of the area.
-              </p>
-              <p>It was meant an introduction to indsutry work (via a real world API and app), Object Oriented
-                Programming
-                and Design Patterns (Observer, Composite and Iterator).</p>
-              <p>I'm using a details-summary card because I feel a web page would've been overkill.</p>
-            </details>
-          </div>
-        </div>
+  <div id="manifest" class="hide">
+    <div id="top_bar" class="small_text center">
+      BRANDON TONG
+      <a href="https://github.com/brandonidas">Github</a> |
+      <a href="https://www.linkedin.com/in/brandon-tong-875bba88/">Linkedin</a> |
+      <a href="https://medium.com/@brandonidas">Medium</a>
+      <div id="line"></div>
+    </div>
+
+    <div class="center large_text">
+      Make stuff, Maximise relationships, Manifest meaning
+    </div>
+
+    <div class="center small_text"> 
+      Toggle for NON-PROFESSIONAL personal commentary
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+      <a class="tiny_text">*DO NOT TURN ON IF YOU ARE A RECRUITER*</a>
+    </div>
+    <br>
+    <div class="card_center maxed">
+      <b>Education</b>
+      <br>
+      University of British Columbia, Canada
+
+      B.Sc
+      Computer Science & Statistics, with Co-op, <i> 4.0 GPA, 'A' average </i>
+
+      <div class="small_text">
+        Key courses: data structures, algorithms, OOP, software engineering, software architecture, multi-threading,
+        applied
+        statistics & probability, linear algebra, artificial intelligence, machine learning (all received A’s, or are
+        yet
+        graded).
       </div>
-      <div class="col-sm">
-        <a href="./portfolio/image-compression-on-torus.html">
-          <div class="card border-info">
-            <img class="card-img-top" src="bus-compressed.png" alt="Card image cap">
-            <div class="card-body">
-              Image Compression on a Torus, in C++, for CPSC 221 coursework
-            </div>
-          </div>
-        </a>
+    </div>
+
+    <br>
+    <div class="card_center maxed">
+      <b>Work Experience</b>
+      <br>
+      Software Engineer (temporary) @ <a href="www.zalora.com">ZALORA Singapore </a>
+      <div class="small_text"> (an e-commerce lead in Singapore, Malaysia + other Southeast Asia) </div>
+      <div class="small_text">
+        July to December 2020
+        <ul>
+          <li>Improved, wrote unit tests and fixes for, mission critical microservice API gateway (¿100k requests on
+            sale days) in Go
+          <li>Worked across multiple micro services, gaining knowledge of: Redis, SQL, memcache, Apache Thrift, JIRA and
+            more. </li>
+          <li>Collaborated with data science team to integrate their recommendation microservices into API gateway</li>
+          </li>
+        </ul>
       </div>
-      <div class="col-sm">
-        <div class="card border-info">
-          <img class="card-img-top" src="smokers.jpg" alt="Card image cap">
-          <div class="card-body">
-            Smokers and Dining Philosophers Synchronisation, in C using condition variables and mutexes,
-            for CPSC 213 coursework.
-            <br>
-            <i>TODO: Web demo via WEBASSEMBLY</i>
-          </div>
-        </div>
+    </div>
+
+    <br>
+    <div class="card_center maxed">
+      <b>Teaching</b>
+      <br>
+      Teaching Assisntant @ <a href="www.ubc.ca">UBC</a>
+      <div class="small_text">
+        (2018 to 2020)
+        Honed communication skills for technical subject matter in lectures, office hours & labs on 600+ students.
+        Managed multiple projects for Software Construction course: planning, requirements & execution.
+        Courses: Systematic Design in Racket, Software Construction in Java, and Data Structures & Algorithms in C/C++.
       </div>
     </div>
     <br>
-    <div class="row">
-      <div class="col-sm">
-        <div class="card border-info mb-3">
-          <img class="card-img-top" src="ocr.png" alt="Card image cap">
-          <div class="card-body">
-            "0"-"9" Optical Character Recognition
-            First done in Octave, Machine Learning, 2017 (Coursera, Andrew Ng)
-            2019 with
-            <a href="./demos/cnn_ocr.html">tf.js and a convolutional neural network</a>
-            (I still need to find the time to mark up this one)
-          </div>
-        </div>
-      </div>
-      <div class="col-sm">
-        <a href="./portfolio/choiciture.html">
-          <div class="card border-info mb-3">
-            <img class="card-img-top" src="choiciture.png" alt="Card image cap">
-            <div class="card-body">
-              Choiciture - Instagam-like app. Full Stack Javascript (M.E.A.N js)
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-sm">
-        <div class="card border-info mb-3">
-          <a href="./demos/linear_prediction_tensorflow.html">
-            <img class="card-img-top" src="tfjs.png" alt="Card image cap">
-          </a>
-          <div class="card-body">
-            <a href="./demos/linear_prediction_tensorflow.html">
-              A Simple Linear Regression from semi-random Data in tf.js
-            </a>
-            <br>
-            <a href="./demos/2d_prediction.html">
-              A Simple Non-Linear Regression from API data in tf.js
-            </a>
-            <details>
-              <summary>More tf.js to come...</summary>
-              I initially did this because I drank too much coffee one evening. But looking at it, this web demo is much
-              more presentable than
-              just a repo.
-            </details>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <p>Except for the demos, I don't consider this website a part of my portfolio
-        because of its bare-bones nature. But it is made from raw HTML and Bootstrap with several Javascript libraries
-        such as chart.js. The inspiration for this page was a medical textbook - clean, clinical,
-        lined with highlights and bright sticky bookmarks.</p>
-    </div>
-  </div>
-  <br>
 
-  <div class="container card card-body">
-    <h2>Articles</h2>
-    <p> <a href="https://www.linkedin.com/pulse/we-dont-fight-dragons-anymore-brandon-tong"> 
-      We Don't Fight Dragons Anymore (Myth Making For the Information Age)
-    </a>
-    This is a test-article for a series, with working title "Myth Making for the Information Age", 
-    where I attempt to form a symbolic narrative from my experiences to cultivate meaning in an increasingly nihilistic world. 
-    </p>
-    <p> <a href="./blog/first-goog-chal.html">My First Code Challenge</a> </p>
-    <p> <a href="https://www.linkedin.com/pulse/statistics-data-science-next-computer-brandon-tong/?published=t"> 
-      Is Statistics (for Data Science) the next Computer Science? (Linkedin)
-    </a> 
-    </p>
+    <div class="card_center maxed">
+      <b>Military Service</b>
+      <br>
+      Clinical Support Team Lead & Medical Officer Assistant (Psychiatric)
+      <div class="small_text">
+        (2015 to 2017)
+        Led a team; managed a ward; administered and observed patients. Supported medical officers in a high stress
+        environment.
+        Awarded Division’s Best (2016), Conduct & Performance ratings of Outstanding (top 5 %).
+      </div>
+    </div>
+    <br>
+    <div class="card_center maxed">
+      <b>High School</b>
+      <br>
+      Tech Lead, Full Stack Developer @ SPRING Temasek Entrepreneurship Center
+      <div class="small_text">
+        (September 2014 to March 2015)
+        Developed an Instagram like polling app, as the only technical project in the entire cohort.
+        Self-taught Javascript, git, MongoDB, Express.js, Angular.js, Node & Amazon Web Services (AWS) in three months.
+        Awarded small project funding and, later, a place at the National University of Singapore InnovFest 2015.
+      </div>
+      <br>
+      National Champion & President @ Junior Achievers: Company of the Year
+      <div class="small_text">
+        (2014)
+        Nominated and elected to be the leader of an enterprise of over 20 students.
+        Raised capital, conceptualised an idea, create and execute a business plan over 12 weeks.
+        Take Two (the company) generated a net profit 330% that of starting capital.
+        Won national round and moved on to represent Singapore in Asia Pacific.
+      </div>
+      <br>
+
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <div class="center tiny_text">
+      I aspire for this site to look like Palantir (or something that belongs on West World).
+    </div>
   </div>
-  <br><br><br>
-  <p class="footer container">Brandon Tong © 2019</p>
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <!-- Load our React component. -->
+  <script src="like_button.js"></script>
+  <script src="name_card.js"></script>
+  <script>
+    var i = 0;
+    var txt = 'Hi, I\'m Brandon';
+    var speed = 45;
+
+    function typeWriter() {
+      if (i < txt.length) {
+        document.getElementById("demo").innerHTML += txt.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+
+    function untypeWriter() {
+      var speed = 60;
+      var currentText = document.getElementById("demo").innerHTML;
+      var j = currentText.length - 1;
+      if (0 <= j) {
+        currentText = currentText.substr(0, j)
+        document.getElementById("demo").innerHTML = currentText;
+        j--;
+        setTimeout(untypeWriter, speed);
+      }
+    }
+
+    function quotesTypeWriter() {
+      var currentText = document.getElementById("demo").innerHTML;
+      var quotes = [
+        "Here are some direct quotes from me",
+        "OBJECTIVE: survive",
+        "The light was as the beginning of the tunnel.",
+        // "The nicotine in your vape gives you the dopamine that's naturally supposed to come from pursuing meaningful goals. That's why you have such a strange nihilistic attitude towards everything.",
+        "I just REALLY wanna work at Palantir as a delta."
+      ]
+    }
+    document.body.onload = function () {
+      typeWriter();
+      //setTimeout(untypeWriter, 1500);
+    }
+
+      ("#manifest").delay(5000).fadeIn(500);
+  </script>
+
+  <script type="text/javascript" language="javascript">
+    window.onload = function ()  //executes when the page finishes loading
+    {
+      setTimeout(classByString, 1000, "demo", "blink_me_on_off");
+      setTimeout(unclassByString, 2000, "demo", "blink_me_on_off");
+      setTimeout(unclassByString, 2200, "manifest", "hide"); //milliseconds
+      setTimeout(unfadeByID, 2099, "manifest"); //milliseconds
+      setTimeout(lineByIDAndLength, 3000, "line", 310); //milliseconds
+    };
+
+    function classByString(id, toClass) {
+      var currentClass = document.getElementById(id).className;
+      currentClass = currentClass.concat(" ", toClass)
+      document.getElementById(id).className = currentClass;
+    }
+
+    function unclassByString(id, unclass) {
+      var currentClass = document.getElementById(id).className;
+      document.getElementById(id).className = currentClass.replace(unclass, "");
+    }
+
+    function unfadeByID(id) {
+      var element = document.getElementById(id);
+      var op = 0.1;  // initial opacity
+      element.style.display = 'block';
+      var timer = setInterval(function () {
+        if (op >= 1) {
+          clearInterval(timer);
+        }
+        element.style.opacity = op;
+        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op += op * 0.1;
+      }, 10);
+    }
+
+
+    // var id = null;
+    // function lineByIDAndLength(id, length) {
+    //   var elem = document.getElementById(id);
+    //   var pos = 0;
+    //   clearInterval(id);
+    //   id = setInterval(frame, 1);
+    //   function frame() {
+    //     if (pos > length) { // find way to see view port
+    //       clearInterval(id);
+    //     } else {
+    //       pos++;
+    //       elem.style.width = pos + 'px';
+    //     }
+    //   }
+    // }
+    var id = null;
+    function lineByIDAndLength(id, length) {
+      var elem = document.getElementById(id);
+      var pos = 0;
+      clearInterval(id);
+      id = setInterval(frame, 1);
+      function frame() {
+        if (pos > length) { // find way to see view port
+          clearInterval(id);
+        } else {
+          pos++;
+          elem.style.width = pos + 'px';
+        }
+      }
+    }
+  </script>
+
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
-<script src="chartIndex.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<!-- use 
+          npx babel --watch src --out-dir . --presets react-app/prod
+    for jsx 
+ -->
 
 </html>
