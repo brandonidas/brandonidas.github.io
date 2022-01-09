@@ -19,7 +19,7 @@
 
   .big_text {
     font-family: 'Andale Mono', 'Courier New', monospace;
-    font-size: min(12vw, 75px);
+    font-size: max(min(12vw, 75px), 40px);
   }
 
   div {
@@ -74,12 +74,19 @@
     }
   }
 
+  .green_outline {
+    border: 1px solid green;
+  }
+
   /* .line {
     width: 5px;
     height: 1px;
     position: absolute;
     background-color: green;
   } */
+  #top_bar {
+    display: inline-block;
+  }
 
   #line {
     width: 0px;
@@ -156,19 +163,20 @@
   <div id="demo" class="center big_text"></div>
   <br>
   <div id="manifest" class="hide">
-    <div id="top_bar" class="small_text center">
-      BRANDON TONG
-      <a href="https://github.com/brandonidas">Github</a> |
-      <a href="https://www.linkedin.com/in/brandon-tong-875bba88/">Linkedin</a> |
-      <a href="https://medium.com/@brandonidas">Medium</a>
-      <div id="line"></div>
+    <div class="center">
+      <span id="top_bar" class="small_text">
+        BRANDON TONG
+        <a href="https://github.com/brandonidas">Github</a> |
+        <a href="https://www.linkedin.com/in/brandon-tong-875bba88/">Linkedin</a> |
+        <a href="https://medium.com/@brandonidas">Medium</a>
+        <div id="line"></div>
+      </span>
     </div>
-
     <div class="center large_text">
-      Make stuff, Maximise relationships, Manifest meaning
+      <span style='font-size:30px;'>&#9736;</span> Make stuff, Maximise relationships, Manifest meaning
     </div>
 
-    <div class="center small_text"> 
+    <div class="center small_text">
       Toggle for NON-PROFESSIONAL personal commentary
       <label class="switch">
         <input type="checkbox">
@@ -181,16 +189,21 @@
       <i class="small_text">&rdsh; Education</i>
       <br>
       University of British Columbia, Canada
-
-      B.Sc
-      Computer Science & Statistics, with Co-op, <i> 4.0 GPA, 'A' average </i>
+      <br>
+      &#x269B; B.Sc
+      Computer Science &#x2655; & Statistics &#x2684;, with Co-op*,
+      <br><i> 4.0 GPA, 'A' average </i>
 
       <div class="small_text">
         Key courses: data structures, algorithms, OOP, software engineering, software architecture, multi-threading,
         applied
-        statistics & probability, linear algebra, artificial intelligence, machine learning (all received A’s, or are
+        statistics & probability, linear algebra, artificial intelligence, machine learning (all received A's, or are
         yet
         graded).
+      </div>
+      <div class="small_text">
+        * for my non-Canadian readers, co-op is a program that allows students to take time off coursework to engage
+        in industry,<i>at industry pay</i>, for typicall 4-12 months at a time.
       </div>
     </div>
 
@@ -198,8 +211,8 @@
     <div class="card_center maxed">
       <i class="small_text">&rdsh; Work Experience</i>
       <br>
-      Software Engineer (temporary) @ <a href="www.zalora.com">ZALORA Singapore </a>
-      <div class="small_text"> (an e-commerce lead in Singapore &#x2600;, Malaysia + other Southeast Asia ) </div>
+      Software Engineer (temporary) @ <a href="www.zalora.com">ZALORA Singapore </a> &#x2600;
+      <div class="small_text"> (an e-commerce lead in Singapore, Malaysia + other Southeast Asia ) </div>
       <div class="small_text">
         July to December 2020
         <ul>
@@ -232,7 +245,7 @@
       <i class="small_text">&rdsh; Military Service</i>
 
       <br>
-      Clinical Support Team Lead & Medical Officer Assistant (Psychiatric)
+      &#9798; Clinical Support Team Lead & Medical Officer Assistant (Psychiatric)
       <div class="small_text">
         (2015 to 2017)
         Led a team; managed a ward; administered and observed patients. Supported medical officers in a high stress
@@ -271,11 +284,14 @@
       I aspire for this site to look like Palantir (or something that belongs on West World).
     </div>
   </div>
+  <span>random text in here</span>
   <!-- Load React. -->
   <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
   <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="jquery-3.5.1.min.js"></script>
+
 
   <!-- Load our React component. -->
   <script src="like_button.js"></script>
@@ -324,13 +340,23 @@
   </script>
 
   <script type="text/javascript" language="javascript">
+
+    var displayAll = true;
     window.onload = function ()  //executes when the page finishes loading
     {
-      setTimeout(classByString, 1000, "demo", "blink_me_on_off");
-      setTimeout(unclassByString, 2000, "demo", "blink_me_on_off");
-      setTimeout(unclassByString, 2200, "manifest", "hide"); //milliseconds
-      setTimeout(unfadeByID, 2099, "manifest"); //milliseconds
-      setTimeout(lineByIDAndLength, 3000, "line", 310); //milliseconds
+      if (!displayAll) {
+        setTimeout(classByString, 1000, "demo", "blink_me_on_off");
+        setTimeout(unclassByString, 2000, "demo", "blink_me_on_off");
+        setTimeout(unclassByString, 2200, "manifest", "hide"); //milliseconds
+        setTimeout(unfadeByID, 2099, "manifest"); //milliseconds
+        setTimeout(lineByIDAndLength, 3000, "line", 310); //milliseconds
+      } else {
+        setTimeout(classByString, 0, "demo", "blink_me_on_off");
+        setTimeout(unclassByString, 0, "demo", "blink_me_on_off");
+        setTimeout(unclassByString, 0, "manifest", "hide"); //milliseconds
+        setTimeout(unfadeByID, 0, "manifest"); //milliseconds
+        setTimeout(lineByIDAndLength, 0, "line", 310); //milliseconds
+      }
     };
 
     function classByString(id, toClass) {
@@ -380,8 +406,9 @@
       var pos = 0;
       clearInterval(id);
       id = setInterval(frame, 1);
+      targetWidth = document.getElementById('top_bar').clientWidth;
       function frame() {
-        if (pos > length) { // find way to see view port
+        if (pos > targetWidth) { // find way to see view port
           clearInterval(id);
         } else {
           pos++;
@@ -390,6 +417,7 @@
       }
     }
   </script>
+
 
 </body>
 
