@@ -281,10 +281,13 @@
     <br>
     <br>
     <div class="center tiny_text">
-      I aspire for this site to look like Palantir (or something that belongs on West World).
+      I aspire for this site to look like <a href="https://www.palantir.com">Palantir's</a> (or something that belongs on <a>West World</a>).
     </div>
+    <div class="center ">
+      MOAR CRYPTIC RUNES  &#9736; &#9737; &#9783;  &#9797; &#9799; !!! 
+    </div>
+    
   </div>
-  <span>random text in here</span>
   <!-- Load React. -->
   <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
   <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
@@ -331,26 +334,28 @@
         "I just REALLY wanna work at Palantir as a delta."
       ]
     }
-    document.body.onload = function () {
-      typeWriter();
-      //setTimeout(untypeWriter, 1500);
-    }
+    // document.body.onload = function () {
+    //   typeWriter();
+    //   //setTimeout(untypeWriter, 1500);
+    // };
 
-      ("#manifest").delay(5000).fadeIn(500);
+    //   ("#manifest").delay(5000).fadeIn(500); //
   </script>
 
   <script type="text/javascript" language="javascript">
 
-    var displayAll = true;
+    var displayAll = false;
     window.onload = function ()  //executes when the page finishes loading
     {
       if (!displayAll) {
+        typeWriter();
         setTimeout(classByString, 1000, "demo", "blink_me_on_off");
         setTimeout(unclassByString, 2000, "demo", "blink_me_on_off");
         setTimeout(unclassByString, 2200, "manifest", "hide"); //milliseconds
         setTimeout(unfadeByID, 2099, "manifest"); //milliseconds
         setTimeout(lineByIDAndLength, 3000, "line", 310); //milliseconds
       } else {
+        typeWriter();
         setTimeout(classByString, 0, "demo", "blink_me_on_off");
         setTimeout(unclassByString, 0, "demo", "blink_me_on_off");
         setTimeout(unclassByString, 0, "manifest", "hide"); //milliseconds
