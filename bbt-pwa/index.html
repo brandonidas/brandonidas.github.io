@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Big Button Timer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#001f3f" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log("✅ Service worker registered"))
+        .catch(err => console.error("⚠️ Service worker failed", err));
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Special Gothic Expanded One', sans-serif;
+      text-align: center;
+      color: white;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s ease;
+    }
+
+    body.default { background-color: #001f3f; }
+    body.green { background-color: green; }
+    body.red { background-color: red; }
+
+    #header {
+      font-size: 2rem;
+      padding: 1.5rem 0 1rem;
+      color: #ccc;
+      user-select: none;
+    }
+
+    .action-zone {
+      width: 100%;
+      padding: 1.5rem 0;
+      font-size: 1.8rem;
+      user-select: none;
+      border-top: 2px solid #444;
+    }
+
+    .action-zone:active {
+      opacity: 0.8;
+    }
+
+    #display {
+      font-size: 5rem;
+      padding: 1rem 0;
+      user-select: none;
+    }
+
+    .split-row {
+      display: flex;
+      border-top: 2px solid #444;
+    }
+
+    .split-zone {
+      flex: 1;
+      padding: 1.5rem 0;
+      font-size: 1.8rem;
+      border-left: 2px solid #444;
+      user-select: none;
+    }
+
+    .split-zone:first-child {
+      border-left: none;
+    }
+
+    .split-zone:active {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body class="default" onclick="handleGlobalInput()">
+  <div id="header" onclick="toggleTimer()">Big Button Timer</div>
+  <div class="action-zone" onclick="toggleTimer()">
+    <div id="display">00:00.00</div>
+    <div>(Tap to Start / Stop)</div>
+  </div>
+  <div class="split-row">
+    <div class="split-zone" onclick="adjustTime(-30)">-30s</div>
+    <div class="split-zone" onclick="adjustTime(60)">+1min</div>
+  </div>
+  <div class="action-zone" onclick="resetTimer()">Reset</div>
+  <div class="split-row">
+    <div class="split-zone" onclick="toggleMode()" id="modeToggleZone">Stopwatch</div>
+    <div class="split-zone" onclick="toggleMute()" id="muteZone">Mute: Off</div>
+  </div>
+  <audio id="alarmSound" preload="auto">
+    <source src="https://www.soundjay.com/button/sounds/beep-07.mp3" type="audio/mpeg" />
+  </audio>
+  <script>
+    let time = 0, ms = 0, mode = 'countdown', interval = null, muted = false, blinking = false, blinkInterval = null;
+    const modeToggleZone = document.getElementById('modeToggleZone');
+    const alarm = document.getElementById('alarmSound');
+    const muteZone = document.getElementById('muteZone');
+    const display = document.getElementById('display');
+
+    function updateDisplay() {
+      const totalSec = Math.floor(time), mins = Math.floor(totalSec / 60).toString().padStart(2, '0'),
+            secs = (totalSec % 60).toString().padStart(2, '0'),
+            msPart = Math.floor((ms % 1) * 100).toString().padStart(2, '0');
+      display.textContent = `${mins}:${secs}.${msPart}`;
+    }
+
+    function toggleTimer() {
+      if (interval || blinking) stopTimer(); else startTimer();
+    }
+
+    function startTimer() {
+      if (interval || blinking) return;
+      let previous = performance.now();
+      interval = setInterval(() => {
+        const now = performance.now(), elapsed = (now - previous) / 1000;
+        previous = now;
+        if (mode === 'countdown') {
+          time -= elapsed;
+          if (time <= 0) {
+            time = 0; stopTimer();
+            if (!muted) alarm.play();
+            startBlinking(); return;
+          }
+        } else time += elapsed;
+        ms = time; updateDisplay();
+      }, 50);
+      setBodyClass('green');
+    }
+
+    function stopTimer() { clearInterval(interval); interval = null; setBodyClass('default'); }
+    function resetTimer() { stopTimer(); time = ms = 0; updateDisplay(); setBodyClass('default'); }
+
+    function toggleMode() {
+      stopTimer(); mode = (mode === 'countdown') ? 'stopwatch' : 'countdown';
+      modeToggleZone.textContent = mode === 'countdown' ? 'Stopwatch' : 'Timer';
+      time = ms = 0; updateDisplay(); setBodyClass('default');
+    }
+
+    function toggleMute() { muted = !muted; muteZone.textContent = `Mute: ${muted ? 'On' : 'Off'}`; }
+    function adjustTime(deltaSeconds) { if (mode === 'countdown') { time = Math.max(0, time + deltaSeconds); ms = time; updateDisplay(); setBodyClass('default'); } }
+
+    function startBlinking() {
+      blinking = true; let count = 0;
+      blinkInterval = setInterval(() => {
+        setBodyClass((count % 2 === 0) ? 'red' : 'default');
+        if (++count >= 20) { clearInterval(blinkInterval); blinking = false; setBodyClass('default'); }
+      }, 250);
+    }
+
+    function handleGlobalInput() { if (blinking) { blinking = false; clearInterval(blinkInterval); setBodyClass('default'); } }
+    function setBodyClass(state) {
+      document.body.classList.remove('default', 'green', 'red');
+      document.body.classList.add(state);
+    }
+    updateDisplay();
+  </script>
+</body>
+</html>
