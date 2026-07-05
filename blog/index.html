@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Brandon Tong</title>
+  <link rel="stylesheet" href="/blog/style.css">
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="site-nav">
+      <a href="/">Home</a> | <a href="/blog/">Blog</a>
+    </div>
+
+    <h1 class="post-title">Blog</h1>
+    <div class="tiny-text">Longer-form cryptic runes, expanded.</div>
+    <br>
+
+    <ul id="post-list" class="post-list"></ul>
+  </div>
+
+  <script>
+    // Add one entry here every time you add a new file to posts/.
+    // Order doesn't matter -- this sorts by date automatically.
+    const posts = [
+      {
+        title: "Hello, Blog",
+        date: "2026-07-05",
+        file: "posts/2026-07-05-hello-blog.html",
+      },
+    ];
+
+    const list = document.getElementById("post-list");
+    posts
+      .slice()
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .forEach((post) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <a href="${post.file}" class="post-list-title">${post.title}</a>
+          <span class="post-list-date">${post.date}</span>
+        `;
+        list.appendChild(li);
+      });
+  </script>
+</body>
+
+</html>

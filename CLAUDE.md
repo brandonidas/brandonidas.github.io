@@ -25,6 +25,11 @@ should be treated as the source of truth for "does this fit the site."
   ```
 - `bbt-pwa/` — a standalone PWA ("Big Button Timer"), fully self-contained
   with its own `index.html`, `manifest.json`, `service-worker.js`, `icons/`.
+- `blog/` — long-form posts. `blog/index.html` lists posts from a plain JS
+  array; `blog/style.css` is the shared theme; `blog/template.html` is the
+  copy-paste starting point for a new post; posts live in `blog/posts/` as
+  `YYYY-MM-DD-slug.html`. See STYLE_GUIDE.md's "Blog" section for the full
+  add-a-post checklist.
 - `babel_jsx_demo.html`, `line_animation_demo.html` — standalone demo pages,
   not linked into the main site nav; leave them as scratch/reference unless
   asked to change them.

@@ -15,6 +15,9 @@ modern site unless asked.
   with its own `index.html`, `manifest.json`, `service-worker.js`, and icons.
   Treat each as its own little world — don't leak its styling back into the
   root site or vice versa.
+- `blog/` is the exception to "no shared CSS between projects" — it's a set
+  of prose pages, not a one-off mini-app, so its posts intentionally share
+  one theme. See "Blog" below.
 - `src/` holds JSX sources that get compiled with Babel CLI into plain JS at
   the repo root (see comment at the bottom of `index.html`):
   ```
@@ -76,6 +79,32 @@ modern site unless asked.
   Keep new copy in that voice — first person, a little wry, not corporate.
 - Unicode/ASCII symbols (☖ ⚛ ♕ ♔ ⚕ etc.) are used decoratively inline with
   text. This is a deliberate aesthetic choice, not clutter to remove.
+
+## Blog
+
+`blog/` holds long-form posts that don't fit on the one-screen resume
+homepage. Structure:
+
+- `blog/style.css` — the one shared theme for the index, the template, and
+  every post. Serif body text (matching the root site), monospace for
+  titles/nav, black-and-white, `a:hover` inverts — same visual language as
+  the root site but tuned for reading instead of a landing-page hero.
+- `blog/index.html` — lists posts. Posts are plain data: a `posts` array of
+  `{ title, date, file }` literals rendered into a list, sorted by date. No
+  build step, no CMS — just edit the array.
+- `blog/template.html` — copy-paste starting point for a new post. Not a
+  real post itself and not listed in `index.html`.
+- `blog/posts/*.html` — the actual posts, named `YYYY-MM-DD-slug.html`.
+
+To add a post:
+1. Copy `blog/template.html` to `blog/posts/YYYY-MM-DD-slug.html`.
+2. Fill in the title, date, and content.
+3. Add a matching `{ title, date, file }` entry to the `posts` array in
+   `blog/index.html`.
+
+Every blog page links `/blog/style.css` with an absolute path (same
+GitHub-Pages-subdirectory reasoning as `bbt-pwa/`), and includes the same
+`site-nav` (`Home | Blog`) at the top.
 
 ## When adding a new mini-project/subpage
 
