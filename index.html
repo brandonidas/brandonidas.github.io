@@ -78,9 +78,10 @@
       align-items: center;
       gap: 8px;
       padding: 20px 0 12px;
-      border-bottom: 1px solid var(--pt-border);
       width: 100%;
       min-width: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
 
     #top-bar .name {
@@ -167,6 +168,8 @@
       display: flex;
       flex-wrap: wrap;
       gap: 4px 20px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
 
     .tagline-item {
@@ -680,6 +683,11 @@
 
     /* --- Reveal --- */
     function revealManifest() {
+      // Reveal nav and tagline (CSS transition handles fade-in)
+      document.getElementById('top-bar').style.opacity = '1';
+      document.getElementById('tagline').style.opacity = '1';
+
+      // Fade in manifest content
       var el = document.getElementById('manifest');
       var op = 0.05;
       el.style.display = 'block';
@@ -695,9 +703,9 @@
     /* --- Accent underline --- */
     function growLine() {
       var el = document.getElementById('underline');
-      /* cap to page-wrapper width so zoom/narrow viewports can't blow out */
-      var wrapper = document.querySelector('.page-wrapper');
-      var target = wrapper ? wrapper.clientWidth : document.documentElement.clientWidth;
+      /* match top-bar content width exactly — wrapper.clientWidth includes padding and overflows */
+      var topBar = document.getElementById('top-bar');
+      var target = topBar ? topBar.clientWidth : document.documentElement.clientWidth;
       var pos = 0;
       var timer = setInterval(function () {
         if (pos >= target) { clearInterval(timer); return; }
